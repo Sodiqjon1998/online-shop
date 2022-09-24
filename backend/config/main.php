@@ -12,6 +12,17 @@ return [
     'controllerNamespace' => 'backend\controllers',
     'bootstrap' => ['log'],
     'modules' => [],
+    'controllerMap' => [
+        'elfinder' => [
+            'class' => 'mihaildev\elfinder\PathController',
+            'access' => ['@'],
+            'root' => [
+                'baseUrl' => '/uploads/img',
+                'basePath' => '@frontend/web/uploads/img',
+                'name' => 'Uploads'
+            ],
+        ]
+    ],
     'components' => [
         'request' => [
             'csrfParam' => '_csrf-backend',

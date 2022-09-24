@@ -12,8 +12,8 @@ use yii\helpers\ArrayHelper;
 class DefaultActiveRecord extends ActiveRecord
 {
     public const STATUS_DELETED = 3;
-    public const STATUS_INACTIVE = 4;
-    public const STATUS_ACTIVE = 5;
+    public const STATUS_INACTIVE = 0;
+    public const STATUS_ACTIVE = 1;
 
     public function behaviors()
     {
@@ -49,6 +49,8 @@ class DefaultActiveRecord extends ActiveRecord
             'teacher_id' => "O'qituvchisi",
             'cost' => 'Narxi',
             'lesson' => 'Darslar soni',
+            'content' => 'Matin',
+            'img' => 'Rasm',
 
             'phone' => "Telefon raqami",
             'gender' => "Jinsi",
