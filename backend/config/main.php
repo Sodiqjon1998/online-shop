@@ -11,7 +11,15 @@ return [
     'basePath' => dirname(__DIR__),
     'controllerNamespace' => 'backend\controllers',
     'bootstrap' => ['log'],
-    'modules' => [],
+    'modules' => [
+        'menumanager' =>  [
+            'class' => '\backend\modules\menumanager\Module'
+        ],
+        'treemanager' =>  [
+            'class' => '\kartik\tree\Module',
+        ],
+
+    ],
     'controllerMap' => [
         'elfinder' => [
             'class' => 'mihaildev\elfinder\PathController',

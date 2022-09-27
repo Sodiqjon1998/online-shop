@@ -20,7 +20,12 @@
         "yiisoft/yii2-symfonymailer": "~2.0.3",
         "mihaildev/yii2-elfinder": "*",
         "mihaildev/yii2-ckeditor": "*",
-        "kartik-v/yii2-widget-switchinput": "dev-master"
+        "kartik-v/yii2-widget-switchinput": "dev-master",
+        "kartik-v/yii2-tree-manager": "dev-master",
+        "wbraganca/yii2-dynamicform": "*",
+        "kartik-v/yii2-widget-fileinput": "dev-master",
+        "yiisoft/yii2-imagine": "^2.3",
+        "zxbodya/yii2-gallery-manager": "*@dev"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.1.0",

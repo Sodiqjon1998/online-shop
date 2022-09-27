@@ -44,7 +44,7 @@ class DefaultActiveRecord extends ActiveRecord
             'updated_at' => "Yangilangan vaqti",
             'created_by' => 'Yaratdi',
             'updated_by' => 'Yangiladi',
-
+            'title' => 'Sarlavhasi',
             'course_id' => 'Kursi',
             'teacher_id' => "O'qituvchisi",
             'cost' => 'Narxi',

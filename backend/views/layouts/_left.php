@@ -5,7 +5,7 @@ use yii\helpers\Url;
 
 $menuItems = [
     ['label' => "Bosh sahifa", 'url' => ['/site/index'], 'icon' => 'home',],
-    ['label' => "Headers", 'url' => ['/header'], 'icon' => 'diagnoses,fas',],
+    ['label' => "Slider", 'url' => ['/slider'], 'icon' => 'radiation fa-spin, fa',],
     ['label' => "Menu", 'url' => ['/menumanager'], 'icon' => 'tree,fas',],
     ['label' => "Sahifalar", 'url' => ['/pages'], 'icon' => 'file,fas',],
     ['label' => "Havolalar", 'url' => ['/links'], 'icon' => 'wind,fas',],

@@ -76,7 +76,7 @@ class m220924_063755_create_product_categories extends Migration
 
         $this->addForeignKey('fk_product_category_id_to_category', 'product', 'category_id', 'category', 'id', 'CASCADE', 'CASCADE');
         $this->addForeignKey('fk_product_color_id_to_color_category', 'product', 'color_id', 'color_category', 'id', 'CASCADE', 'CASCADE');
-        $this->addForeignKey('fk_product_manufacture_id_to_manufacture_category', 'product', 'color_id', 'manufacture_category', 'id', 'CASCADE', 'CASCADE');
+        $this->addForeignKey('fk_product_manufacture_id_to_manufacture_category', 'product', 'manufacture_id', 'manufacture_category', 'id', 'CASCADE', 'CASCADE');
     }
 
     /**

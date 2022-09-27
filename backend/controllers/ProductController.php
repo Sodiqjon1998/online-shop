@@ -2,16 +2,16 @@
 
 namespace backend\controllers;
 
-use common\models\Slider;
-use backend\models\searchs\SliderSearch;
-use yii\web\Controller;
+use common\models\Product;
+use backend\models\searchs\ProductSearch;
+use backend\controllers\BaseController;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * SliderController implements the CRUD actions for Slider model.
+ * ProductController implements the CRUD actions for Product model.
  */
-class SliderController extends Controller
+class ProductController extends BaseController
 {
     /**
      * @inheritDoc
@@ -32,13 +32,13 @@ class SliderController extends Controller
     }
 
     /**
-     * Lists all Slider models.
+     * Lists all Product models.
      *
      * @return string
      */
     public function actionIndex()
     {
-        $searchModel = new SliderSearch();
+        $searchModel = new ProductSearch();
         $dataProvider = $searchModel->search($this->request->queryParams);
 
         return $this->render('index', [
@@ -48,7 +48,7 @@ class SliderController extends Controller
     }
 
     /**
-     * Displays a single Slider model.
+     * Displays a single Product model.
      * @param int $id ID
      * @return string
      * @throws NotFoundHttpException if the model cannot be found
@@ -61,13 +61,13 @@ class SliderController extends Controller
     }
 
     /**
-     * Creates a new Slider model.
+     * Creates a new Product model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return string|\yii\web\Response
      */
     public function actionCreate()
     {
-        $model = new Slider();
+        $model = new Product();
 
         if ($this->request->isPost) {
             if ($model->load($this->request->post()) && $model->save()) {
@@ -83,7 +83,7 @@ class SliderController extends Controller
     }
 
     /**
-     * Updates an existing Slider model.
+     * Updates an existing Product model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param int $id ID
      * @return string|\yii\web\Response
@@ -103,7 +103,7 @@ class SliderController extends Controller
     }
 
     /**
-     * Deletes an existing Slider model.
+     * Deletes an existing Product model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param int $id ID
      * @return \yii\web\Response
@@ -111,21 +111,21 @@ class SliderController extends Controller
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete(true);
+        $this->findModel($id)->delete();
 
         return $this->redirect(['index']);
     }
 
     /**
-     * Finds the Slider model based on its primary key value.
+     * Finds the Product model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param int $id ID
-     * @return Slider the loaded model
+     * @return Product the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Slider::findOne(['id' => $id])) !== null) {
+        if (($model = Product::findOne(['id' => $id])) !== null) {
             return $model;
         }
 

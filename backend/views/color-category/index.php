@@ -1,7 +1,6 @@
 <?php
 
-use backend\modules\menumanager\models\Menu;
-use common\models\Slider;
+use common\models\ColorCategory;
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\grid\ActionColumn;
@@ -9,17 +8,17 @@ use yii\grid\GridView;
 use yii\widgets\Pjax;
 
 /** @var yii\web\View $this */
-/** @var backend\models\searchs\SliderSearch $searchModel */
+/** @var backend\models\searchs\ColorCategorySearch $searchModel */
 /** @var yii\data\ActiveDataProvider $dataProvider */
 
-$this->title = 'Slider';
+$this->title = 'Ranglar kategoriyasi';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="card">
     <div class="card-body">
 
         <p>
-            <?= Html::a('<i class="fa fa-plus"></i> Yangi qo\'shish', ['create'], ['class' => 'btn btn-success']) ?>
+            <?= Html::a('<i class="fas fa-plus"></i> Yangi qo\'shish', ['create'], ['class' => 'btn btn-success']) ?>
         </p>
 
         <?php Pjax::begin(); ?>
@@ -31,20 +30,10 @@ $this->params['breadcrumbs'][] = $this->title;
             'columns' => [
                 ['class' => 'yii\grid\SerialColumn'],
 
-                [
-                    'attribute' => 'img',
-                    'format' => 'raw',
-                    'value' => static function (Slider $slider) {
-                        return Html::img($slider->img, ['image-fluid', 'style' => 'width: 200px']);
-                    }
-                ],
-                [
-                    'attribute' => 'content',
-                    'format' => 'raw',
-                ],
+                'title',
                 [
                     'attribute' => 'status',
-                    'value' => static function (Slider $slider) {
+                    'value' => static function (ColorCategory $slider) {
                         return $slider->getStatusName();
                     }
                 ],
