@@ -1,6 +1,8 @@
 <?php
 
+use common\models\ColorCategory;
 use kartik\switchinput\SwitchInput;
+use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use yii\bootstrap4\ActiveForm;
 
@@ -19,7 +21,7 @@ use yii\bootstrap4\ActiveForm;
                 <?= $form->field($model, 'category_id')->textInput(['value' => $model->category->title, 'disabled'=> true]) ?>
             </div>
             <div class="col-md-4">
-                <?= $form->field($model, 'color_id')->textInput(['value' => $model->color->title, 'disabled'=> true]) ?>
+                <?= $form->field($model, 'color_id')->dropdownList(ArrayHelper::map(ColorCategory::find()->where(['status' => ColorCategory::STATUS_ACTIVE])->all(), 'id', 'title'))?>
             </div>
             <div class="col-md-4">
                 <?= $form->field($model, 'manufacture_id')->textInput(['value' => $model->manufacture->title, 'disabled'=> true]) ?>

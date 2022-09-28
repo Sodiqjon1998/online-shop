@@ -5,6 +5,7 @@ namespace backend\models\searchs;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use common\models\Product;
+use yii\db\ActiveQuery;
 
 /**
  * ProductSearch represents the model behind the search form of `common\models\Product`.
@@ -38,14 +39,18 @@ class ProductSearch extends Product
      *
      * @return ActiveDataProvider
      */
-    public function search($params)
+    public function search(array $params, ActiveQuery $query = null)
     {
-        $query = Product::find();
-
+        if(!($query)){
+            $query = Product::find();
+        }
         // add conditions that should always apply here
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
+            'pagination' => [
+                'pageSize' => 10
+            ]
         ]);
 
         $this->load($params);

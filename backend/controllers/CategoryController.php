@@ -2,12 +2,15 @@
 
 namespace backend\controllers;
 
+use backend\models\searchs\ProductSearch;
 use common\models\Category;
 use backend\models\searchs\CategorySearch;
 use backend\controllers\BaseController;
+use common\models\ColorCategory;
 use common\models\Product;
 use Exception;
 use yii\base\Model;
+use yii\data\ActiveDataProvider;
 use yii\helpers\ArrayHelper;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -59,10 +62,17 @@ class CategoryController extends BaseController
      * @return string
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionView($id)
+    public function actionView($id): string
     {
+
+        $searchModel = new ProductSearch();
+        $query = Product::find()->andWhere(['status' => Product::STATUS_ACTIVE, 'category_id' => $id]);
+        $dataProvider = $searchModel->search($this->request->queryParams, $query);
+
         return $this->render('view', [
-            'model' => $this->findModel($id)
+            'model' => $this->findModel($id),
+            'dataProvider' => $dataProvider,
+            'searchModel' => $searchModel
         ]);
     }
 

@@ -1,12 +1,17 @@
 <?php
 
 use common\models\ManufactureCategory;
-use yii\helpers\Url;
+use common\models\Product;
+use yii\grid\ActionColumn;
+use yii\grid\GridView;
 use yii\helpers\Html;
 use yii\widgets\DetailView;
+use yii\widgets\Pjax;
 
 /** @var yii\web\View $this */
-/** @var common\models\Slider $model */
+/** @var $dataProvider \yii\data\ActiveDataProvider $model */
+/** @var common\models\ManufactureCategory $model */
+/** @var \backend\models\searchs\ProductSearch $searchModel */
 
 $this->title = $model->id;
 $this->params['breadcrumbs'][] = ['label' => 'Korxona katagoriyasi', 'url' => ['index']];
@@ -79,58 +84,50 @@ $this->params['breadcrumbs'][] = $this->title;
         </div>
         <div id="collapseTwo" class="collapse" data-parent="#accordion">
             <div class="card-body">
-                <table class="table table-striped">
-                    <tbody>
-                    <thead>
-                    <tr>
-                        <th class="text-center">Sarlavha</th>
-                        <th class="text-center">Narxi</th>
-                        <th class="text-center">Matin</th>
-                        <th class="text-center">Maxsulot codi</th>
-                        <th class="text-center">Mukofot Ochkolari</th>
-                        <th class="text-center">Yaroqliyligi</th>
-                        <th class="text-center">Chegirma</th>
-                        <th class="text-center">Maxsulot rasmi</th>
-                        <th class="text-center">Statusi</th>
-                        <th class="text-center" class="text-center">
-                            <i class="fa fa-tools"></i>
-                        </th>
-                    </tr>
-                    </thead>
-                    <?php foreach ($model->products as $value): ?>
-                        <tr>
-                            <td class="text-center" style="width: 30px;"><?= $value->title; ?></td>
-                            <td class="text-center" style="width: 30px;"><?= $value->price; ?></td>
-                            <td class="text-center" style="width: 30px;"><?= $value->content; ?></td>
-                            <td class="text-center" style="width: 30px;"><?= $value->product_code; ?></td>
-                            <td class="text-center" style="width: 30px;"><?= $value->reward_points; ?></td>
-                            <td class="text-center" style="width: 30px;"><?= $value->availability; ?></td>
-                            <td class="text-center" style="width: 30px;"><?= $value->discount; ?></td>
-                            <td class="text-center" style="width: 30px;">
-                                <a href="<?= Url::to(['product/add-img', 'id' => $value->id]); ?>">
-                                    <i class="fas fa-image" style="font-size: 35px;"></i>
-                                </a>
-                            </td>
-                            <td style="width: 30px;">
-                                <?=$value->getStatusName()?>
-                            </td>
-                            <td style="width: 90px;">
-                                <?= Html::a('<i class="fa fa-eye" style="font-size: 17px;"></i>', ['/product/view', 'id' => $value->id], [
-                                    'class' => 'btn btn-primary']) ?>
-                                <?= Html::a('<i class="fas fa-trash" style="font-size: 17px;"></i>', ['product/delete', 'id' => $value->id], [
-                                    'class' => 'btn btn-danger',
-                                    'data' => [
-                                        'confirm' => 'Are you sure you want to delete this item?',
-                                        'method' => 'post',
-                                    ],
-                                ]) ?>
-                                <?= Html::a('<i class="fa fa-pen" style="font-size: 17px;"></i>', ['product/update', 'id' => $value->id], [
-                                    'class' => 'btn btn-success']) ?>
-                            </td>
-                        </tr>
-                    <?php endforeach; ?>
-                    </tbody>
-                </table>
+                <?php Pjax::begin(); ?>
+                <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+
+                <?= GridView::widget([
+                    'dataProvider' => $dataProvider,
+                    'filterModel' => $searchModel,
+                    'columns' => [
+                        ['class' => 'yii\grid\SerialColumn'],
+
+                        'title',
+                        'price',
+                        'reward_points',
+                        'product_code',
+                        [
+                            'attribute' => 'status',
+                            'value' => static function (Product $slider) {
+                                return $slider->getStatusName();
+                            }
+                        ],
+                        [
+                            'class' => ActionColumn::class,
+                            'buttons'=> [
+                                'view'=>function ($url, $model) {
+
+                                    return Html::a('<span class="fas fa-eye"></span>', ['product/view', 'id' =>$model->id], ['class' => 'btn btn-default btn-xs']);
+                                },
+                                'update'=>function ($url, $model) {
+                                    return Html::a('<span class="fas fa-pen"></span>', ['product/update', 'id' => $model->id], ['class' => 'btn btn-info btn-xs']);
+                                },
+                                'delete' => function($url, $model){
+                                    return Html::a('<i class="fas fa-trash"></i>', ['product/delete', 'id' => $model->id], [
+                                        'class' => 'btn btn-danger btn-xs',
+                                        'data' => [
+                                            'confirm' => 'Rostdan ham o\'chirmoqchimisiz?',
+                                            'method' => 'post',
+                                        ],
+                                    ]);
+                                }
+                            ]
+                        ],
+                    ],
+                ]) ?>
+
+                <?php Pjax::end(); ?>
             </div>
         </div>
     </div>

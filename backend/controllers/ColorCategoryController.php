@@ -2,6 +2,7 @@
 
 namespace backend\controllers;
 
+use backend\models\searchs\ProductSearch;
 use common\models\Category;
 use common\models\ColorCategory;
 use backend\models\searchs\ColorCategorySearch;
@@ -59,10 +60,16 @@ class ColorCategoryController extends BaseController
      * @return string
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionView($id)
+    public function actionView($id):string
     {
+        $searchModel = new ProductSearch();
+        $query = Product::find()->andWhere(['status' => Product::STATUS_ACTIVE, 'color_id' => $id]);
+        $dataProvider = $searchModel->search($this->request->queryParams, $query);
+
         return $this->render('view', [
             'model' => $this->findModel($id),
+            'dataProvider' => $dataProvider,
+            'searchModel' => $searchModel
         ]);
     }
 

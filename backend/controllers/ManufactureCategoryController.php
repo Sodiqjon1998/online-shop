@@ -2,6 +2,7 @@
 
 namespace backend\controllers;
 
+use backend\models\searchs\ProductSearch;
 use common\models\ManufactureCategory;
 use backend\models\searchs\ManufactureCategorySearch;
 use common\models\Product;
@@ -60,8 +61,14 @@ class ManufactureCategoryController extends Controller
      */
     public function actionView($id)
     {
+        $searchModel = new ProductSearch();
+        $query = Product::find()->andWhere(['status' => Product::STATUS_ACTIVE, 'manufacture_id' => $id]);
+        $dataProvider = $searchModel->search($this->request->queryParams, $query);
+
         return $this->render('view', [
             'model' => $this->findModel($id),
+            'dataProvider' => $dataProvider,
+            'searchModel' => $searchModel
         ]);
     }
 
