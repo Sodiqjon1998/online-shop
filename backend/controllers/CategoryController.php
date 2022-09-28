@@ -12,6 +12,7 @@ use yii\helpers\ArrayHelper;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use Yii;
+use yii\web\Response;
 
 /**
  * CategoryController implements the CRUD actions for Category model.
@@ -74,13 +75,11 @@ class CategoryController extends BaseController
     {
         $modelCustomer = new Category();
         $modelsAddress = [new Product()];
-
         if ($modelCustomer->load(Yii::$app->request->post())) {
 
-            $modelsAddress = Product::createMultiple(Product::class);
+            $modelsAddress = Product::createMultiple(Product::classname());
             Model::loadMultiple($modelsAddress, Yii::$app->request->post());
 
-            // validate all models
             $valid = $modelCustomer->validate();
             $valid = Model::validateMultiple($modelsAddress) && $valid;
 
@@ -110,6 +109,7 @@ class CategoryController extends BaseController
             'modelCustomer' => $modelCustomer,
             'modelsAddress' => (empty($modelsAddress)) ? [new Product()] : $modelsAddress
         ]);
+
     }
 
     /**
@@ -145,6 +145,7 @@ class CategoryController extends BaseController
                         }
                         foreach ($modelsAddress as $modelAddress) {
                             $modelAddress->category_id = $modelCustomer->id;
+
                             if (! ($flag = $modelAddress->save(false))) {
                                 $transaction->rollBack();
                                 break;

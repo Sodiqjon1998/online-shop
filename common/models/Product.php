@@ -4,6 +4,7 @@ namespace common\models;
 
 use Yii;
 use yii\helpers\ArrayHelper;
+use zxbodya\yii2\galleryManager\GalleryBehavior;
 
 /**
  * This is the model class for table "product".
@@ -29,6 +30,43 @@ use yii\helpers\ArrayHelper;
  */
 class Product extends \yii\db\ActiveRecord
 {
+    public const STATUS_DELETED = 3;
+    public const STATUS_INACTIVE = 0;
+    public const STATUS_ACTIVE = 1;
+
+    public function behaviors()
+    {
+        return [
+            'galleryBehavior' => [
+                'class' => GalleryBehavior::class,
+                'type' => 'product',
+                'extension' => 'jpg, png, jpeg',
+                'directory' => Yii::getAlias('@webroot') . '/uploads/product/gallery',
+                'url' => Yii::getAlias('@web') . '/uploads/product/gallery',
+                'versions' => [
+                    'small' => function ($img) {
+                        /** @var \Imagine\Image\ImageInterface $img */
+                        return $img
+                            ->copy()
+                            ->thumbnail(new \Imagine\Image\Box(200, 200));
+                    },
+                    'medium' => function ($img) {
+                        /** @var \Imagine\Image\ImageInterface $img */
+                        $dstSize = $img->getSize();
+                        $maxWidth = 800;
+                        if ($dstSize->getWidth() > $maxWidth) {
+                            $dstSize = $dstSize->widen($maxWidth);
+                        }
+                        return $img
+                            ->copy()
+                            ->resize($dstSize);
+                    },
+                ]
+            ]
+        ];
+    }
+
+
     /**
      * {@inheritdoc}
      */
@@ -59,18 +97,18 @@ class Product extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'category_id' => 'Category ID',
-            'color_id' => 'Color ID',
-            'manufacture_id' => 'Manufacture ID',
-            'title' => 'Title',
-            'price' => 'Price',
-            'content' => 'Content',
-            'product_code' => 'Product Code',
-            'reward_points' => 'Reward Points',
-            'availability' => 'Availability',
-            'discount' => 'Discount',
-            'review_count' => 'Review Count',
-            'view_count' => 'View Count',
+            'category_id' => 'Kategoriyasi',
+            'color_id' => 'Rang kategoriyasi',
+            'manufacture_id' => 'Ishlab chiqarish korxonasi',
+            'title' => 'Sarlavha',
+            'price' => 'Narxi',
+            'content' => 'Matni',
+            'product_code' => 'Maxsulot kodi',
+            'reward_points' => 'Mukofot ballari',
+            'availability' => 'Yaroqligligi',
+            'discount' => 'Chegirma',
+            'review_count' => 'Izohlar soni',
+            'view_count' => 'Ko\'rishlar soni',
             'status' => 'Status',
         ];
     }
@@ -131,5 +169,55 @@ class Product extends \yii\db\ActiveRecord
         unset($model, $formName, $post);
 
         return $models;
+    }
+
+
+    public function images($type = 'medium')
+    {
+
+        $images = [];
+
+        foreach ($this->getBehavior('galleryBehavior')->getImages() as $key=>$image) {
+
+            $images[$key] = $image->getUrl($type);
+        }
+        return $images;
+
+    }
+
+    public function image($type = 'medium')
+    {
+        $images = $this->images($type);
+
+        if (empty($images)) {
+
+            return '';
+        }
+
+        return $images[0];
+    }
+
+
+    public static function getList(bool $active = true, string $select = 'name'): array
+    {
+        $query = ColorCategory::find();
+        return ArrayHelper::map($query->all(), 'id', $select);
+    }
+
+
+
+    public static function getStatusList(): array
+    {
+        return [
+            static::STATUS_DELETED => "O'chirilgan",
+            static::STATUS_INACTIVE => 'Nofaol',
+            static::STATUS_ACTIVE => 'Faol',
+        ];
+    }
+
+    public function getStatusName(): string
+    {
+        $list = static::getStatusList();
+        return $this->hasAttribute('status') ? $list[$this->status] ?? '-' : '-';
     }
 }

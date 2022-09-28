@@ -1,6 +1,7 @@
 <?php
 
 use common\models\ColorCategory;
+use common\models\ManufactureCategory;
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\grid\ActionColumn;
@@ -33,7 +34,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'title',
                 [
                     'attribute' => 'status',
-                    'value' => static function (ColorCategory $slider) {
+                    'value' => static function (ManufactureCategory $slider) {
                         return $slider->getStatusName();
                     }
                 ],

@@ -25,7 +25,8 @@
         "wbraganca/yii2-dynamicform": "*",
         "kartik-v/yii2-widget-fileinput": "dev-master",
         "yiisoft/yii2-imagine": "^2.3",
-        "zxbodya/yii2-gallery-manager": "*@dev"
+        "zxbodya/yii2-gallery-manager": "*@dev",
+        "kartik-v/yii2-widget-select2": "dev-master"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.1.0",

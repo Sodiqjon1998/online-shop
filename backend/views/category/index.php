@@ -11,7 +11,7 @@ use yii\widgets\Pjax;
 /** @var backend\models\searchs\CategorySearch $searchModel */
 /** @var yii\data\ActiveDataProvider $dataProvider */
 
-$this->title = 'Categories';
+$this->title = 'Katagoriyalar';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="card">

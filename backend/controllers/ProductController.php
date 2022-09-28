@@ -5,8 +5,10 @@ namespace backend\controllers;
 use common\models\Product;
 use backend\models\searchs\ProductSearch;
 use backend\controllers\BaseController;
+use yii\filters\AccessControl;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use zxbodya\yii2\galleryManager\GalleryManagerAction;
 
 /**
  * ProductController implements the CRUD actions for Product model.
@@ -22,13 +24,37 @@ class ProductController extends BaseController
             parent::behaviors(),
             [
                 'verbs' => [
-                    'class' => VerbFilter::className(),
+                    'class' => VerbFilter::class,
                     'actions' => [
                         'delete' => ['POST'],
                     ],
                 ],
+                'access' => [
+                    'class' => AccessControl::class,
+                    'rules' => [
+                        [
+
+                            'allow' => true,
+                            'roles' => ['@'],
+                        ],
+                    ],
+                ],
             ]
         );
+    }
+
+
+    public function actions()
+    {
+        return [
+            'galleryApi' => [
+                'class' => GalleryManagerAction::class,
+                // mappings between type names and model classes (should be the same as in behaviour)
+                'types' => [
+                    'product' => Product::class
+                ]
+            ],
+        ];
     }
 
     /**
@@ -130,5 +156,16 @@ class ProductController extends BaseController
         }
 
         throw new NotFoundHttpException('The requested page does not exist.');
+    }
+
+
+    public function actionAddImg($id)
+    {
+
+        $model = $this->findModel($id);
+
+        return $this->render('_img', [
+            'model' => $model
+        ]);
     }
 }
