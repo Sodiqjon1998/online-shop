@@ -1,7 +1,7 @@
 <?php
 
 
-?>
+use yii\helpers\Url; ?>
 
 <!-- Footer Start -->
 <footer>
@@ -13,7 +13,7 @@
                     <!-- Single Footer Start -->
                     <div class="single-footer col-md-3 col-sm-6">
                         <div class="footer-logo">
-                            <a href="#"><img class="img" src="img/logo/logo.png" alt="logo-img"></a>
+                            <a href="#"><img class="img" src="<?=Url::base();?>/img/logo/logo.png" alt="logo-img"></a>
                         </div>
                         <div class="footer-content">
                             <p>We are a team of designers and developers that create high quality HTML, Magento, Prestashop, Opencart.</p>

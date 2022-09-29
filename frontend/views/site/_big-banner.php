@@ -1,8 +1,7 @@
 <?php
 
 
-
-?>
+use yii\helpers\Url; ?>
 
 
 <!-- home-2 Big Banner Start -->
@@ -14,7 +13,7 @@
                 <div class="big-banner text-center">
                     <div class="big-banner-desc">
                         <h2>Interior Creativity with Nevara</h2>
-                        <a href="categorie-page.html">view more</a>
+                        <a href="<?= Url::to(['category/index']);?>">view more</a>
                     </div>
                 </div>
             </div>

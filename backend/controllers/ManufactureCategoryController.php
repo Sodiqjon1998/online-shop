@@ -28,7 +28,7 @@ class ManufactureCategoryController extends Controller
             parent::behaviors(),
             [
                 'verbs' => [
-                    'class' => VerbFilter::className(),
+                    'class' => VerbFilter::class,
                     'actions' => [
                         'delete' => ['POST'],
                     ],
@@ -182,7 +182,7 @@ class ManufactureCategoryController extends Controller
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
+        $this->findModel($id)->delete(true);
 
         return $this->redirect(['index']);
     }

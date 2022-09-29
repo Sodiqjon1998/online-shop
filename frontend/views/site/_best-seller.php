@@ -1,9 +1,10 @@
 <?php
 
 
+use common\models\Product;
 
+$bestSellers = Product::find()->where(['status' => Product::STATUS_ACTIVE])->all();
 ?>
-
 
 
 <!-- Best Seller Products Start -->
@@ -25,153 +26,32 @@
                 <!-- Best Seller Product Activation Start -->
                 <div class="best-seller new-products owl-carousel">
                     <!-- Single Product Start -->
-                    <div class="single-product">
-                        <!-- Product Image Start -->
-                        <div class="pro-img">
-                            <a href="product-page.html">
-                                <img class="primary-img" src="img/new-products/1_2.jpg" alt="single-product">
-                                <img class="secondary-img" src="img/new-products/5_1.jpg" alt="single-product">
-                            </a>
-                            <div class="quick-view">
-                                <a href="#" data-toggle="modal" data-target="#myModal"><i class="pe-7s-look"></i>quick view</a>
+                    <?php foreach ($bestSellers as $key => $seller): ?>
+                        <div class="single-product">
+                            <!-- Product Image Start -->
+                            <div class="pro-img">
+                                <a href="product-page.html">
+                                    <?php foreach ($seller->twoimage() as $k => $value): ?>
+                                        <img class="<?= $k == 0 ? 'primary-img' : 'secondary-img'?>" src="<?= $value ?>" alt="single-product">
+                                    <?php endforeach; ?>
+                                </a>
+                                <div class="quick-view">
+                                    <a href="#" data-toggle="modal" data-target="#myModal"><i class="pe-7s-look"></i>quick view</a>
+                                </div>
+                                <span class="sticker-new">new</span>
                             </div>
-                            <span class="sticker-new">new</span>
-                        </div>
-                        <!-- Product Image End -->
-                        <!-- Product Content Start -->
-                        <div class="pro-content text-center">
-                            <h4><a href="product-page.html">Decorative Vase</a></h4>
-                            <p class="price"><span>$241.99</span></p>
-                            <div class="action-links2">
-                                <a data-toggle="tooltip" title="Add to Cart" href="cart.html">add to cart</a>
+                            <!-- Product Image End -->
+                            <!-- Product Content Start -->
+                            <div class="pro-content text-center">
+                                <h4><a href="product-page.html"><?=$seller->title;?></a></h4>
+                                <p class="price"><span>$<?=$seller->price;?></span></p>
+                                <div class="action-links2">
+                                    <a data-toggle="tooltip" title="Add to Cart" href="cart.html">add to cart</a>
+                                </div>
                             </div>
+                            <!-- Product Content End -->
                         </div>
-                        <!-- Product Content End -->
-                    </div>
-                    <!-- Single Product End -->
-                    <!-- Single Product Start -->
-                    <div class="single-product">
-                        <!-- Product Image Start -->
-                        <div class="pro-img">
-                            <a href="product-page.html">
-                                <img class="primary-img" src="img/new-products/3_1.jpg" alt="single-product">
-                                <img class="secondary-img" src="img/new-products/6_2.jpg" alt="single-product">
-                            </a>
-                            <div class="quick-view">
-                                <a href="#" data-toggle="modal" data-target="#myModal"><i class="pe-7s-look"></i>quick view</a>
-                            </div>
-                        </div>
-                        <!-- Product Image End -->
-                        <!-- Product Content Start -->
-                        <div class="pro-content text-center">
-                            <h4><a href="product-page.html">Sheepskin Pillow2</a></h4>
-                            <p class="price"><span>$500.00</span></p>
-                            <div class="action-links2">
-                                <a data-toggle="tooltip" title="Add to Cart" href="cart.html">add to cart</a>
-                            </div>
-                        </div>
-                        <!-- Product Content End -->
-                    </div>
-                    <!-- Single Product End -->
-                    <!-- Single Product Start -->
-                    <div class="single-product">
-                        <!-- Product Image Start -->
-                        <div class="pro-img">
-                            <a href="product-page.html">
-                                <img class="primary-img" src="img/new-products/1_1.jpg" alt="single-product">
-                                <img class="secondary-img" src="img/new-products/2_2.jpg" alt="single-product">
-                            </a>
-                            <div class="quick-view">
-                                <a href="#" data-toggle="modal" data-target="#myModal"><i class="pe-7s-look"></i>quick view</a>
-                            </div>
-                            <span class="sticker-new">new</span>
-                        </div>
-                        <!-- Product Image End -->
-                        <!-- Product Content Start -->
-                        <div class="pro-content text-center">
-                            <h4><a href="product-page.html">Carte Postal Clock</a></h4>
-                            <p class="price"><span>$180.29</span></p>
-                            <div class="action-links2">
-                                <a data-toggle="tooltip" title="Add to Cart" href="cart.html">add to cart</a>
-                            </div>
-                        </div>
-                        <!-- Product Content End -->
-                    </div>
-                    <!-- Single Product End -->
-                    <!-- Single Product Start -->
-                    <div class="single-product">
-                        <!-- Product Image Start -->
-                        <div class="pro-img">
-                            <a href="product-page.html">
-                                <img class="primary-img" src="img/new-products/6_1.jpg" alt="single-product">
-                                <img class="secondary-img" src="img/new-products/6_2.jpg" alt="single-product">
-                            </a>
-                            <div class="quick-view">
-                                <a href="#" data-toggle="modal" data-target="#myModal"><i class="pe-7s-look"></i>quick view</a>
-                            </div>
-                            <span class="sticker-new">new</span>
-                        </div>
-                        <!-- Product Image End -->
-                        <!-- Product Content Start -->
-                        <div class="pro-content text-center">
-                            <h4><a href="product-page.html">dictum idrisus</a></h4>
-                            <p class="price"><span>$199.99</span></p>
-                            <div class="action-links2">
-                                <a data-toggle="tooltip" title="Add to Cart" href="cart.html">add to cart</a>
-                            </div>
-                        </div>
-                        <!-- Product Content End -->
-                    </div>
-                    <!-- Single Product End -->
-                    <!-- Single Product Start -->
-                    <div class="single-product">
-                        <!-- Product Image Start -->
-                        <div class="pro-img">
-                            <a href="product-page.html">
-                                <img class="primary-img" src="img/new-products/2_1.jpg" alt="single-product">
-                                <img class="secondary-img" src="img/new-products/2_2.jpg" alt="single-product">
-                            </a>
-                            <div class="quick-view">
-                                <a href="#" data-toggle="modal" data-target="#myModal"><i class="pe-7s-look"></i>quick view</a>
-                            </div>
-                            <span class="sticker-new">new</span>
-                        </div>
-                        <!-- Product Image End -->
-                        <!-- Product Content Start -->
-                        <div class="pro-content text-center">
-                            <h4><a href="product-page.html">Decorative Vase</a></h4>
-                            <p class="price"><span>$241.99</span></p>
-                            <div class="action-links2">
-                                <a data-toggle="tooltip" title="Add to Cart" href="cart.html">add to cart</a>
-                            </div>
-                        </div>
-                        <!-- Product Content End -->
-                    </div>
-                    <!-- Single Product End -->
-                    <!-- Single Product Start -->
-                    <div class="single-product">
-                        <!-- Product Image Start -->
-                        <div class="pro-img">
-                            <a href="product-page.html">
-                                <img class="primary-img" src="img/new-products/8_1.jpg" alt="single-product">
-                                <img class="secondary-img" src="img/new-products/3_2.jpg" alt="single-product">
-                            </a>
-                            <div class="quick-view">
-                                <a href="#" data-toggle="modal" data-target="#myModal"><i class="pe-7s-look"></i>quick view</a>
-                            </div>
-                            <span class="sticker-new">new</span>
-                        </div>
-                        <!-- Product Image End -->
-                        <!-- Product Content Start -->
-                        <div class="pro-content text-center">
-                            <h4><a href="product-page.html">dictum idrisus</a></h4>
-                            <p class="price"><span>$271.99</span></p>
-                            <div class="action-links2">
-                                <a data-toggle="tooltip" title="Add to Cart" href="cart.html">add to cart</a>
-                            </div>
-                        </div>
-                        <!-- Product Content End -->
-                    </div>
+                    <?php endforeach; ?>
                     <!-- Single Product End -->
                 </div>
                 <!-- Best Seller Product Activation Start -->

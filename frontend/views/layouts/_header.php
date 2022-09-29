@@ -1,7 +1,7 @@
 <?php
 
 
-?>
+use yii\helpers\Url;?>
 
 
 
@@ -12,7 +12,7 @@
             <!-- Logo Start -->
             <div class="col-lg-2 col-md-2 col-sm-6 col-xs-5 full-col pl-0">
                 <div class="logo">
-                    <a href="index.html"><img src="img/logo/logo.png" alt="brand-image"></a>
+                    <a href="index.html"><img src="<?=Url::base();?>/img/logo/logo.png" alt="brand-image"></a>
                 </div>
             </div>
             <!-- Logo End -->

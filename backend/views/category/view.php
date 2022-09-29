@@ -93,6 +93,9 @@ YiiAsset::register($this);
                 <?= GridView::widget([
                     'dataProvider' => $dataProvider,
                     'filterModel' => $searchModel,
+                    'pager' => [
+                        'class' => '\yii\bootstrap4\LinkPager',
+                    ],
                     'columns' => [
                         ['class' => 'yii\grid\SerialColumn'],
 
@@ -101,6 +104,13 @@ YiiAsset::register($this);
                         'reward_points',
                         'product_code',
                         [
+                            'attribute' => 'Rasmlar',
+                            'format' => 'raw',
+                            'value' => function ($model) {
+                                return Html::a('<i class="fas fa-image" style="font-size: large"></i>', ['product/add-img', 'id' => $model->id], ['class' => 'btn btn-default btn-lg']);
+                            }
+                        ],
+                        [
                             'attribute' => 'status',
                             'value' => static function (Product $slider) {
                                 return $slider->getStatusName();
@@ -108,15 +118,15 @@ YiiAsset::register($this);
                         ],
                         [
                             'class' => ActionColumn::class,
-                            'buttons'=> [
-                                'view'=>function ($url, $model) {
+                            'buttons' => [
+                                'view' => function ($url, $model) {
 
-                                    return Html::a('<span class="fas fa-eye"></span>', ['product/view', 'id' =>$model->id], ['class' => 'btn btn-default btn-xs']);
+                                    return Html::a('<span class="fas fa-eye"></span>', ['product/view', 'id' => $model->id], ['class' => 'btn btn-default btn-xs']);
                                 },
-                                'update'=>function ($url, $model) {
+                                'update' => function ($url, $model) {
                                     return Html::a('<span class="fas fa-pen"></span>', ['product/update', 'id' => $model->id], ['class' => 'btn btn-info btn-xs']);
                                 },
-                                'delete' => function($url, $model){
+                                'delete' => function ($url, $model) {
                                     return Html::a('<i class="fas fa-trash"></i>', ['product/delete', 'id' => $model->id], [
                                         'class' => 'btn btn-danger btn-xs',
                                         'data' => [

@@ -41,8 +41,8 @@ class Product extends \yii\db\ActiveRecord
                 'class' => GalleryBehavior::class,
                 'type' => 'product',
                 'extension' => 'jpg, png, jpeg',
-                'directory' => Yii::getAlias('@webroot') . '/uploads/product/gallery',
-                'url' => Yii::getAlias('@web') . '/uploads/product/gallery',
+                'directory' => Yii::getAlias('@frontend/web') . '/upload/product/gallery',
+                'url' => Yii::getAlias('/frontend/web') . '/upload/product/gallery',
                 'versions' => [
                     'small' => function ($img) {
                         /** @var \Imagine\Image\ImageInterface $img */
@@ -146,12 +146,12 @@ class Product extends \yii\db\ActiveRecord
 
     public static function createMultiple($modelClass, $multipleModels = [])
     {
-        $model    = new $modelClass;
+        $model = new $modelClass;
         $formName = $model->formName();
-        $post     = Yii::$app->request->post($formName);
-        $models   = [];
+        $post = Yii::$app->request->post($formName);
+        $models = [];
 
-        if (! empty($multipleModels)) {
+        if (!empty($multipleModels)) {
             $keys = array_keys(ArrayHelper::map($multipleModels, 'id', 'id'));
             $multipleModels = array_combine($keys, $multipleModels);
         }
@@ -177,7 +177,7 @@ class Product extends \yii\db\ActiveRecord
 
         $images = [];
 
-        foreach ($this->getBehavior('galleryBehavior')->getImages() as $key=>$image) {
+        foreach ($this->getBehavior('galleryBehavior')->getImages() as $key => $image) {
 
             $images[$key] = $image->getUrl($type);
         }
@@ -185,7 +185,7 @@ class Product extends \yii\db\ActiveRecord
 
     }
 
-    public function image($type = 'medium')
+    public function image($type = 'original')
     {
         $images = $this->images($type);
 
@@ -205,7 +205,6 @@ class Product extends \yii\db\ActiveRecord
     }
 
 
-
     public static function getStatusList(): array
     {
         return [
@@ -219,5 +218,21 @@ class Product extends \yii\db\ActiveRecord
     {
         $list = static::getStatusList();
         return $this->hasAttribute('status') ? $list[$this->status] ?? '-' : '-';
+    }
+
+
+    public function twoimage($type = 'original')
+    {
+
+        $images = [];
+
+        foreach ($this->getBehavior('galleryBehavior')->getImages() as $key => $image) {
+            if ($key == 0 || $key == 1) {
+                $images[$key] = $image->getUrl($type);
+            } else {
+                unset($images[$key]);
+            }
+        }
+        return $images;
     }
 }

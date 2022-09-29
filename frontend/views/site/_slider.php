@@ -15,8 +15,7 @@ $sliders = Slider::find()->where(['status' => Slider::STATUS_ACTIVE])->all();
         <!-- Slider Background  Image Start-->
         <div id="slider" class="nivoSlider">
             <?php foreach ($sliders as $key => $slider): ?>
-                <img src="<?= $slider->img; ?>" data-thumb="<?= $slider->img; ?>" alt=""
-                     title="#htmlcaption<?= $key; ?>"/>
+                <img src="<?= $slider->img; ?>" data-thumb="<?= $slider->img; ?>" alt="" title="#htmlcaption<?= $key; ?>"/>
             <?php endforeach; ?>
         </div>
         <!-- Slider Background  Image Start-->

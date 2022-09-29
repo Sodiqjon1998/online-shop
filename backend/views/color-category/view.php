@@ -101,6 +101,13 @@ $this->params['breadcrumbs'][] = $this->title;
                         'reward_points',
                         'product_code',
                         [
+                            'attribute' => 'Rasmlar',
+                            'format' => 'raw',
+                            'value' => function ($model) {
+                                return Html::a('<i class="fas fa-image" style="font-size: large"></i>', ['product/add-img', 'id' => $model->id], ['class' => 'btn btn-default btn-lg']);
+                            }
+                        ],
+                        [
                             'attribute' => 'status',
                             'value' => static function (Product $slider) {
                                 return $slider->getStatusName();

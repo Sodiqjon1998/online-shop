@@ -33,8 +33,8 @@ AppAsset::register($this);
 
         <?= $content ?>
 
-        <?=$this->render('_footer');?>
-        <?=$this->render('_modal');?>
+        <?= $this->render('_footer'); ?>
+        <?= $this->render('_modal'); ?>
 
     </div>
 
