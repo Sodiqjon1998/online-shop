@@ -99,7 +99,7 @@ class CategoryController extends BaseController
                     if ($flag = $modelCustomer->save(false)) {
                         foreach ($modelsAddress as $modelAddress) {
                             $modelAddress->category_id = $modelCustomer->id;
-                            if (! ($flag = $modelAddress->save(false))) {
+                            if (!($flag = $modelAddress->save(false))) {
                                 $transaction->rollBack();
                                 break;
                             }
@@ -155,8 +155,7 @@ class CategoryController extends BaseController
                         }
                         foreach ($modelsAddress as $modelAddress) {
                             $modelAddress->category_id = $modelCustomer->id;
-
-                            if (! ($flag = $modelAddress->save(false))) {
+                            if (!($flag = $modelAddress->save(false))) {
                                 $transaction->rollBack();
                                 break;
                             }
@@ -174,7 +173,7 @@ class CategoryController extends BaseController
 
         return $this->render('update', [
             'modelCustomer' => $modelCustomer,
-            'modelsAddress' => (empty($modelsAddress)) ? [new Product()] : $modelsAddress
+            'modelsAddress' => $modelsAddress ? $modelsAddress : [new Product()]
         ]);
 
     }

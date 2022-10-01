@@ -1,8 +1,21 @@
 <?php
 
+use common\models\Category;
+use common\models\ColorCategory;
+use common\models\ManufactureCategory;
+use yii\helpers\Url;
 
-use yii\helpers\Url; ?>
 
+$categories = Category::find()
+    ->where(['status' => Category::STATUS_ACTIVE])
+    ->all();
+$colorCategories = ColorCategory::find()
+    ->where(['status' => ColorCategory::STATUS_ACTIVE])
+    ->all();
+$manufactureCategories = ManufactureCategory::find()
+    ->where(['status' => ManufactureCategory::STATUS_ACTIVE])
+    ->all();
+?>
 
 
 <!-- Sidebar Start -->
@@ -12,18 +25,10 @@ use yii\helpers\Url; ?>
         <div class="categorie-module mb-80">
             <h3>categories</h3>
             <ul class="categorie-list">
-                <li class="active"><a href="#">Furniture (19)</a>
-                    <ul class="sub-categorie pl-30">
-                        <li><a href="#">Sofas & Loveseats (19)</a></li>
-                        <li><a href="#">Chairs & Recliners (19)</a></li>
-                    </ul>
-                </li>
-                <li><a href="#">Sectionals (16)</a></li>
-                <li><a href="#">Decor (19)</a></li>
-                <li><a href="#">Decorative Accessories (19)</a></li>
-                <li><a href="#">Window Treatments (16)</a></li>
-                <li><a href="#">Bookshelves (16)</a></li>
-                <li><a href="#">Coffee & Accent Tables (17)</a></li>
+                <?php foreach ($categories as $category): ?>
+                    <li><a href="<?= Url::to(['categories', 'id' => $category->id]) ?>"><?= $category->title; ?>
+                            (<?= $category->getProductCount(); ?>)</a></li>
+                <?php endforeach; ?>
             </ul>
         </div>
         <!-- Categories Module End -->
@@ -40,11 +45,12 @@ use yii\helpers\Url; ?>
         <div class="cat-color mb-80">
             <h3>Color</h3>
             <ul class="cat-color-list">
-                <li><a href="#">Black (13)</a></li>
-                <li><a href="#">Blue (13)</a></li>
-                <li><a href="#">Grey (13)</a></li>
-                <li><a href="#">Green (13)</a></li>
-                <li><a href="#">Red (13)</a></li>
+                <?php foreach ($colorCategories as $colorCategory): ?>
+                    <li>
+                        <a href="<?= Url::to(['category/categories', 'id' => $colorCategory->id]); ?>"><?= $colorCategory->title; ?>
+                            (<?= $colorCategory->getProductCount(); ?>)</a>
+                    </li>
+                <?php endforeach; ?>
             </ul>
         </div>
         <!-- Categories Color End -->
@@ -52,11 +58,9 @@ use yii\helpers\Url; ?>
         <div class="manufactures mb-80">
             <h3>MANUFACTURERS</h3>
             <ul class="manufactures-list">
-                <li><a href="#">Manufacturers 1 (14)</a></li>
-                <li><a href="#">Manufacturers 2 (13)</a></li>
-                <li><a href="#">Manufacturers 3 (13)</a></li>
-                <li><a href="#">Manufacturers 4 (14)</a></li>
-                <li><a href="#">Manufacturers 5 (13)</a></li>
+                <?php foreach ($manufactureCategories as $manufactureCategory): ?>
+                    <li><a href="<?=Url::to(['category/categories', 'id' => $manufactureCategory->id]);?>"><?=$manufactureCategory->title;?> (<?=$manufactureCategory->getProductCount();?>)</a></li>
+                <?php endforeach; ?>
             </ul>
         </div>
         <!-- Manufactures List End -->
@@ -72,8 +76,10 @@ use yii\helpers\Url; ?>
                         <!-- Product Image Start -->
                         <div class="pro-img">
                             <a href="product-page.html">
-                                <img class="primary-img" src="<?=Url::base();?>/img/new-products/2_1.jpg" alt="single-product">
-                                <img class="secondary-img" src="<?=Url::base();?>/img/new-products/2_2.jpg" alt="single-product">
+                                <img class="primary-img" src="<?= Url::base(); ?>/img/new-products/2_1.jpg"
+                                     alt="single-product">
+                                <img class="secondary-img" src="<?= Url::base(); ?>/img/new-products/2_2.jpg"
+                                     alt="single-product">
                             </a>
                         </div>
                         <!-- Product Image End -->
@@ -90,8 +96,10 @@ use yii\helpers\Url; ?>
                         <!-- Product Image Start -->
                         <div class="pro-img">
                             <a href="product-page.html">
-                                <img class="primary-img" src="<?=Url::base();?>/img/new-products/3_1.jpg" alt="single-product">
-                                <img class="secondary-img" src="<?=Url::base();?>/img/new-products/3_2.jpg" alt="single-product">
+                                <img class="primary-img" src="<?= Url::base(); ?>/img/new-products/3_1.jpg"
+                                     alt="single-product">
+                                <img class="secondary-img" src="<?= Url::base(); ?>/img/new-products/3_2.jpg"
+                                     alt="single-product">
                             </a>
                         </div>
                         <!-- Product Image End -->
@@ -108,8 +116,10 @@ use yii\helpers\Url; ?>
                         <!-- Product Image Start -->
                         <div class="pro-img">
                             <a href="product-page.html">
-                                <img class="primary-img" src="<?=Url::base();?>/img/new-products/4_1.jpg" alt="single-product">
-                                <img class="secondary-img" src="<?=Url::base();?>/img/new-products/2_2.jpg" alt="single-product">
+                                <img class="primary-img" src="<?= Url::base(); ?>/img/new-products/4_1.jpg"
+                                     alt="single-product">
+                                <img class="secondary-img" src="<?= Url::base(); ?>/img/new-products/2_2.jpg"
+                                     alt="single-product">
                             </a>
                         </div>
                         <!-- Product Image End -->
@@ -130,8 +140,10 @@ use yii\helpers\Url; ?>
                         <!-- Product Image Start -->
                         <div class="pro-img">
                             <a href="product-page.html">
-                                <img class="primary-img" src="<?=Url::base();?>/img/new-products/4_1.jpg" alt="single-product">
-                                <img class="secondary-img" src="<?=Url::base();?>/img/new-products/2_2.jpg" alt="single-product">
+                                <img class="primary-img" src="<?= Url::base(); ?>/img/new-products/4_1.jpg"
+                                     alt="single-product">
+                                <img class="secondary-img" src="<?= Url::base(); ?>/img/new-products/2_2.jpg"
+                                     alt="single-product">
                             </a>
                         </div>
                         <!-- Product Image End -->
@@ -148,8 +160,10 @@ use yii\helpers\Url; ?>
                         <!-- Product Image Start -->
                         <div class="pro-img">
                             <a href="product-page.html">
-                                <img class="primary-img" src="<?=Url::base();?>/img/new-products/2_1.jpg" alt="single-product">
-                                <img class="secondary-img" src="<?=Url::base();?>/img/new-products/2_2.jpg" alt="single-product">
+                                <img class="primary-img" src="<?= Url::base(); ?>/img/new-products/2_1.jpg"
+                                     alt="single-product">
+                                <img class="secondary-img" src="<?= Url::base(); ?>/img/new-products/2_2.jpg"
+                                     alt="single-product">
                             </a>
                         </div>
                         <!-- Product Image End -->
@@ -166,8 +180,10 @@ use yii\helpers\Url; ?>
                         <!-- Product Image Start -->
                         <div class="pro-img">
                             <a href="product-page.html">
-                                <img class="primary-img" src="<?=Url::base();?>/img/new-products/3_1.jpg" alt="single-product">
-                                <img class="secondary-img" src="<?=Url::base();?>/img/new-products/3_2.jpg" alt="single-product">
+                                <img class="primary-img" src="<?= Url::base(); ?>/img/new-products/3_1.jpg"
+                                     alt="single-product">
+                                <img class="secondary-img" src="<?= Url::base(); ?>/img/new-products/3_2.jpg"
+                                     alt="single-product">
                             </a>
                         </div>
                         <!-- Product Image End -->
@@ -188,8 +204,10 @@ use yii\helpers\Url; ?>
                         <!-- Product Image Start -->
                         <div class="pro-img">
                             <a href="product-page.html">
-                                <img class="primary-img" src="<?=Url::base();?>/img/new-products/2_1.jpg" alt="single-product">
-                                <img class="secondary-img" src="<?=Url::base();?>/img/new-products/2_2.jpg" alt="single-product">
+                                <img class="primary-img" src="<?= Url::base(); ?>/img/new-products/2_1.jpg"
+                                     alt="single-product">
+                                <img class="secondary-img" src="<?= Url::base(); ?>/img/new-products/2_2.jpg"
+                                     alt="single-product">
                             </a>
                         </div>
                         <!-- Product Image End -->
@@ -206,8 +224,10 @@ use yii\helpers\Url; ?>
                         <!-- Product Image Start -->
                         <div class="pro-img">
                             <a href="product-page.html">
-                                <img class="primary-img" src="<?=Url::base();?>/img/new-products/3_1.jpg" alt="single-product">
-                                <img class="secondary-img" src="<?=Url::base();?>/img/new-products/3_2.jpg" alt="single-product">
+                                <img class="primary-img" src="<?= Url::base(); ?>/img/new-products/3_1.jpg"
+                                     alt="single-product">
+                                <img class="secondary-img" src="<?= Url::base(); ?>/img/new-products/3_2.jpg"
+                                     alt="single-product">
                             </a>
                         </div>
                         <!-- Product Image End -->
@@ -224,8 +244,10 @@ use yii\helpers\Url; ?>
                         <!-- Product Image Start -->
                         <div class="pro-img">
                             <a href="product-page.html">
-                                <img class="primary-img" src="<?=Url::base();?>/img/new-products/4_1.jpg" alt="single-product">
-                                <img class="secondary-img" src="<?=Url::base();?>/img/new-products/2_2.jpg" alt="single-product">
+                                <img class="primary-img" src="<?= Url::base(); ?>/img/new-products/4_1.jpg"
+                                     alt="single-product">
+                                <img class="secondary-img" src="<?= Url::base(); ?>/img/new-products/2_2.jpg"
+                                     alt="single-product">
                             </a>
                         </div>
                         <!-- Product Image End -->

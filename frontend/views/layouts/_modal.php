@@ -1,6 +1,10 @@
 <?php
 
+use common\models\Product;
 
+$productModal = Product::find()
+    ->where(['status' => Product::STATUS_ACTIVE])
+    ->all();
 ?>
 
 
@@ -26,21 +30,6 @@
                                     <div class="tab-content">
                                         <div id="thumb1" class="tab-pane fade in active">
                                             <img src="img/new-products/1_1.jpg" alt="product-thumbnail"/>
-                                        </div>
-                                        <div id="thumb2" class="tab-pane fade">
-                                            <img src="img/new-products/1_2.jpg" alt="product-thumbnail"/>
-                                        </div>
-                                        <div id="thumb3" class="tab-pane fade">
-                                            <img src="img/new-products/2_1.jpg" alt="product-thumbnail"/>
-                                        </div>
-                                        <div id="thumb4" class="tab-pane fade">
-                                            <img src="img/new-products/2_2.jpg" alt="product-thumbnail"/>
-                                        </div>
-                                        <div id="thumb5" class="tab-pane fade">
-                                            <img src="img/new-products/3_1.jpg" alt="product-thumbnail"/>
-                                        </div>
-                                        <div id="thumb6" class="tab-pane fade">
-                                            <img src="img/new-products/3_2.jpg" alt="product-thumbnail"/>
                                         </div>
                                     </div>
                                     <!-- Thumbnail Large Image End -->

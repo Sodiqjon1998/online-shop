@@ -1,11 +1,13 @@
 <?php
+/* @var $products \common\models\Product */
+/* @var $dataProvider \yii\data\ActiveDataProvider */
 
-
-
+$this->title = "Products categories";
+$this->params['breadcrumbs'][] = ['label' => $this->title, 'url' => ['index']];
 ?>
 
 
-<?=$this->render('_breadcrumb');?>
+<?= $this->render('_breadcrumb'); ?>
 
 
 <!-- Categories Product Start -->
@@ -13,9 +15,12 @@
     <div class="container">
         <div class="row">
 
-            <?=$this->render('_content');?>
+            <?= $this->render('_content', [
+                'products' => $products,
+                'dataProvider' => $dataProvider,
+            ]); ?>
 
-            <?=$this->render('_left');?>
+            <?= $this->render('_left'); ?>
 
         </div>
         <!-- Row End -->

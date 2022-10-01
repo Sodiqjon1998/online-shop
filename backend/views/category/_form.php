@@ -11,23 +11,22 @@ use yii\helpers\Url;
 /* @var $modelCustomer app\modules\yii2extensions\models\Customer */
 /* @var $modelsAddress app\modules\yii2extensions\models\Address */
 
-$js = '
-jQuery(".dynamicform_wrapper").on("afterInsert", function(e, item) {
-    jQuery(".dynamicform_wrapper .panel-title-address").each(function(index) {
-        jQuery(this).html("Maxsulot: " + (index + 1))
-    });
-});
-
-jQuery(".dynamicform_wrapper").on("afterDelete", function(e) {
-    jQuery(".dynamicform_wrapper .panel-title-address").each(function(index) {
-        jQuery(this).html("Maxsulot: " + (index + 1))
-    });
-});
-';
-
-$this->registerJs($js);
+//$js = '
+//jQuery(".dynamicform_wrapper").on("afterInsert", function(e, item) {
+//    jQuery(".dynamicform_wrapper .panel-title-address").each(function(index) {
+//        jQuery(this).html("Maxsulot: " + (index + 1))
+//    });
+//});
+//
+//jQuery(".dynamicform_wrapper").on("afterDelete", function(e) {
+//    jQuery(".dynamicform_wrapper .panel-title-address").each(function(index) {
+//        jQuery(this).html("Maxsulot: " + (index + 1))
+//    });
+//});
+//';
+//
+//$this->registerJs($js);
 ?>
-
 <div class="card">
     <div class="card-body">
 

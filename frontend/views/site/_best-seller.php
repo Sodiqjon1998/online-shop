@@ -2,6 +2,7 @@
 
 
 use common\models\Product;
+use yii\helpers\Url;
 
 $bestSellers = Product::find()->where(['status' => Product::STATUS_ACTIVE])->all();
 ?>
@@ -30,7 +31,7 @@ $bestSellers = Product::find()->where(['status' => Product::STATUS_ACTIVE])->all
                         <div class="single-product">
                             <!-- Product Image Start -->
                             <div class="pro-img">
-                                <a href="product-page.html">
+                                <a href="<?=Url::to(['category/product-detail', 'id' => $seller->id]);?>">
                                     <?php foreach ($seller->twoimage() as $k => $value): ?>
                                         <img class="<?= $k == 0 ? 'primary-img' : 'secondary-img'?>" src="<?= $value ?>" alt="single-product">
                                     <?php endforeach; ?>
@@ -43,7 +44,7 @@ $bestSellers = Product::find()->where(['status' => Product::STATUS_ACTIVE])->all
                             <!-- Product Image End -->
                             <!-- Product Content Start -->
                             <div class="pro-content text-center">
-                                <h4><a href="product-page.html"><?=$seller->title;?></a></h4>
+                                <h4><a href="<?=Url::to(['category/product-detail', 'id' => $seller->id]);?>"><?=$seller->title;?></a></h4>
                                 <p class="price"><span>$<?=$seller->price;?></span></p>
                                 <div class="action-links2">
                                     <a data-toggle="tooltip" title="Add to Cart" href="cart.html">add to cart</a>

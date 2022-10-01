@@ -55,4 +55,12 @@ class ManufactureCategory extends DefaultActiveRecord
         return $this->hasMany(Product::class, ['manufacture_id' => 'id']);
     }
 
+
+    /**
+     * @return bool|int|string|null
+     */
+    public function getProductCount()
+    {
+        return $this->hasMany(Product::class, ['manufacture_id' => 'id'])->count();
+    }
 }

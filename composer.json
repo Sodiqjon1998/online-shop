@@ -16,7 +16,7 @@
     "require": {
         "php": ">=7.4.0",
         "yiisoft/yii2": "~2.0.45",
-        "yiisoft/yii2-bootstrap4": "~2.0.0",
+        "yiisoft/yii2-bootstrap4": "^2.0",
         "yiisoft/yii2-symfonymailer": "~2.0.3",
         "mihaildev/yii2-elfinder": "*",
         "mihaildev/yii2-ckeditor": "*",
@@ -26,7 +26,9 @@
         "kartik-v/yii2-widget-fileinput": "dev-master",
         "yiisoft/yii2-imagine": "^2.3",
         "zxbodya/yii2-gallery-manager": "*@dev",
-        "kartik-v/yii2-widget-select2": "dev-master"
+        "kartik-v/yii2-widget-select2": "dev-master",
+        "kartik-v/yii2-widget-rating": "dev-master",
+        "yiisoft/yii2-bootstrap": "2.0.x-dev"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.1.0",

@@ -1,8 +1,7 @@
 <?php
 
 
-
-?>
+use yii\bootstrap4\Breadcrumbs; ?>
 
 
 <!-- Page Breadcrumb Start -->
@@ -12,9 +11,10 @@
             <div class="col-sm-12">
                 <div class="breadcrumb-content text-center ptb-70">
                     <h1>FURNITURE</h1>
-                    <ul class="breadcrumb-list breadcrumb">
-                        <li><a href="#">home</a></li>
-                        <li><a href="#">furniture</a></li>
+                    <ul class="breadcrumb-list breadcrumb text-center">
+                        <?=Breadcrumbs::widget([
+                            'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
+                        ]);?>
                     </ul>
                 </div>
             </div>

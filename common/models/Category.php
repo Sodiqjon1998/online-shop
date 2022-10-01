@@ -57,4 +57,12 @@ class Category extends DefaultActiveRecord
     }
 
 
+    /**
+     * @return bool|int|string|null
+     */
+    public function getProductCount()
+    {
+        return $this->hasMany(Product::class, ['category_id' => 'id'])->count();
+    }
+
 }

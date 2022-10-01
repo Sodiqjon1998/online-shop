@@ -57,6 +57,8 @@ class DefaultActiveRecord extends ActiveRecord
             'born_date' => "Tug'ilgan sanasi",
             'username' => "Username",
             'password' => "Paroli",
+            'your_name' => 'Your Review',
+            'rating' => 'Rating',
 
             'url' => 'Url manzili',
             'languages' => 'Tillari',

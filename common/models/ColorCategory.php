@@ -53,4 +53,13 @@ class ColorCategory extends DefaultActiveRecord
     {
         return $this->hasMany(Product::class, ['color_id' => 'id']);
     }
+
+
+    /**
+     * @return bool|int|string|null
+     */
+    public function getProductCount()
+    {
+        return $this->hasMany(Product::class, ['color_id' => 'id'])->count();
+    }
 }

@@ -7,6 +7,7 @@ use yii\data\ActiveDataProvider;
 use yii\grid\ActionColumn;
 use yii\grid\GridView;
 use yii\helpers\Html;
+use yii\helpers\Url;
 use yii\web\YiiAsset;
 use yii\widgets\DetailView;
 use yii\widgets\Pjax;
@@ -86,6 +87,7 @@ YiiAsset::register($this);
             </a>
         </div>
         <div id="collapseTwo" class="collapse" data-parent="#accordion">
+            <a href="<?= Url::to(['product/create', 'id' => $model->id]);?>" class="btn btn-success btn-md">Maxsulot qo'shish</a>
             <div class="card-body">
                 <?php Pjax::begin(); ?>
                 <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
