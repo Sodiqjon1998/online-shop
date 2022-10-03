@@ -3,6 +3,7 @@
 /* @var $model \common\models\ProductCommit */
 
 $this->title = $productOne->title;
+$this->params['breadcrumbs'][] = ['label' => "Categories", 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 

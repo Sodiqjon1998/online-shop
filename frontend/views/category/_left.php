@@ -3,6 +3,7 @@
 use common\models\Category;
 use common\models\ColorCategory;
 use common\models\ManufactureCategory;
+use common\models\Product;
 use yii\helpers\Url;
 
 
@@ -14,6 +15,12 @@ $colorCategories = ColorCategory::find()
     ->all();
 $manufactureCategories = ManufactureCategory::find()
     ->where(['status' => ManufactureCategory::STATUS_ACTIVE])
+    ->all();
+
+$mostViewed = Product::find()
+    ->where(['status' => Product::STATUS_ACTIVE])
+    ->orderBy(['view_count' => SORT_DESC])
+    ->limit(3)
     ->all();
 ?>
 
@@ -59,7 +66,9 @@ $manufactureCategories = ManufactureCategory::find()
             <h3>MANUFACTURERS</h3>
             <ul class="manufactures-list">
                 <?php foreach ($manufactureCategories as $manufactureCategory): ?>
-                    <li><a href="<?=Url::to(['category/categories', 'id' => $manufactureCategory->id]);?>"><?=$manufactureCategory->title;?> (<?=$manufactureCategory->getProductCount();?>)</a></li>
+                    <li>
+                        <a href="<?= Url::to(['category/categories', 'id' => $manufactureCategory->id]); ?>"><?= $manufactureCategory->title; ?>
+                            (<?= $manufactureCategory->getProductCount(); ?>)</a></li>
                 <?php endforeach; ?>
             </ul>
         </div>
@@ -72,192 +81,78 @@ $manufactureCategories = ManufactureCategory::find()
                 <!-- Triple Product Start -->
                 <div class="triple-product">
                     <!-- Single Product Start -->
-                    <div class="single-product mb-25">
-                        <!-- Product Image Start -->
-                        <div class="pro-img">
-                            <a href="product-page.html">
-                                <img class="primary-img" src="<?= Url::base(); ?>/img/new-products/2_1.jpg"
-                                     alt="single-product">
-                                <img class="secondary-img" src="<?= Url::base(); ?>/img/new-products/2_2.jpg"
-                                     alt="single-product">
-                            </a>
+                    <?php foreach ($mostViewed as $value): ?>
+                        <div class="single-product mb-25">
+                            <!-- Product Image Start -->
+                            <div class="pro-img">
+                                <a href="<?=Url::to(['category/product-detail', 'id' => $value->id]);?>">
+                                    <?php foreach ($value->twoimage() as $key => $item): ?>
+                                        <img class="<?=$key== 0 ? 'primary-img' : 'secondary-img';?>" src="<?=$item;?>"
+                                             alt="single-product">
+                                    <?php endforeach; ?>
+                                </a>
+                            </div>
+                            <!-- Product Image End -->
+                            <!-- Product Content Start -->
+                            <div class="pro-content">
+                                <h4><a href="<?=Url::to(['category/product-detail', 'id' => $value->id]);?>">Carte Postal Clock</a></h4>
+                                <p class="price"><span>$122.00</span></p>
+                            </div>
+                            <!-- Product Content End -->
                         </div>
-                        <!-- Product Image End -->
-                        <!-- Product Content Start -->
-                        <div class="pro-content">
-                            <h4><a href="product-page.html">Carte Postal Clock</a></h4>
-                            <p class="price"><span>$122.00</span></p>
-                        </div>
-                        <!-- Product Content End -->
-                    </div>
-                    <!-- Single Product End -->
-                    <!-- Single Product Start -->
-                    <div class="single-product mb-25">
-                        <!-- Product Image Start -->
-                        <div class="pro-img">
-                            <a href="product-page.html">
-                                <img class="primary-img" src="<?= Url::base(); ?>/img/new-products/3_1.jpg"
-                                     alt="single-product">
-                                <img class="secondary-img" src="<?= Url::base(); ?>/img/new-products/3_2.jpg"
-                                     alt="single-product">
-                            </a>
-                        </div>
-                        <!-- Product Image End -->
-                        <!-- Product Content Start -->
-                        <div class="pro-content">
-                            <h4><a href="product-page.html">congue sitamet</a></h4>
-                            <p class="price"><span>$2000.00</span></p>
-                        </div>
-                        <!-- Product Content End -->
-                    </div>
-                    <!-- Single Product End -->
-                    <!-- Single Product Start -->
-                    <div class="single-product mb-25">
-                        <!-- Product Image Start -->
-                        <div class="pro-img">
-                            <a href="product-page.html">
-                                <img class="primary-img" src="<?= Url::base(); ?>/img/new-products/4_1.jpg"
-                                     alt="single-product">
-                                <img class="secondary-img" src="<?= Url::base(); ?>/img/new-products/2_2.jpg"
-                                     alt="single-product">
-                            </a>
-                        </div>
-                        <!-- Product Image End -->
-                        <!-- Product Content Start -->
-                        <div class="pro-content">
-                            <h4><a href="product-page.html">dictum idrisus</a></h4>
-                            <p class="price"><span>$602.00</span></p>
-                        </div>
-                        <!-- Product Content End -->
-                    </div>
+                    <?php endforeach; ?>
                     <!-- Single Product End -->
                 </div>
                 <!-- Triple Product End -->
                 <!-- Triple Product Start -->
                 <div class="triple-product">
                     <!-- Single Product Start -->
-                    <div class="single-product mb-25">
-                        <!-- Product Image Start -->
-                        <div class="pro-img">
-                            <a href="product-page.html">
-                                <img class="primary-img" src="<?= Url::base(); ?>/img/new-products/4_1.jpg"
-                                     alt="single-product">
-                                <img class="secondary-img" src="<?= Url::base(); ?>/img/new-products/2_2.jpg"
-                                     alt="single-product">
-                            </a>
+                    <?php foreach ($mostViewed as $value): ?>
+                        <div class="single-product mb-25">
+                            <!-- Product Image Start -->
+                            <div class="pro-img">
+                                <a href="<?=Url::to(['category/product-detail', 'id' => $value->id]);?>">
+                                    <?php foreach ($value->twoimage() as $key => $item): ?>
+                                        <img class="<?=$key== 0 ? 'primary-img' : 'secondary-img';?>" src="<?=$item;?>"
+                                             alt="single-product">
+                                    <?php endforeach; ?>
+                                </a>
+                            </div>
+                            <!-- Product Image End -->
+                            <!-- Product Content Start -->
+                            <div class="pro-content">
+                                <h4><a href="<?=Url::to(['category/product-detail', 'id' => $value->id]);?>">Carte Postal Clock</a></h4>
+                                <p class="price"><span>$122.00</span></p>
+                            </div>
+                            <!-- Product Content End -->
                         </div>
-                        <!-- Product Image End -->
-                        <!-- Product Content Start -->
-                        <div class="pro-content">
-                            <h4><a href="product-page.html">Carte Postal Clock</a></h4>
-                            <p class="price"><span>$122.00</span></p>
-                        </div>
-                        <!-- Product Content End -->
-                    </div>
-                    <!-- Single Product End -->
-                    <!-- Single Product Start -->
-                    <div class="single-product mb-25">
-                        <!-- Product Image Start -->
-                        <div class="pro-img">
-                            <a href="product-page.html">
-                                <img class="primary-img" src="<?= Url::base(); ?>/img/new-products/2_1.jpg"
-                                     alt="single-product">
-                                <img class="secondary-img" src="<?= Url::base(); ?>/img/new-products/2_2.jpg"
-                                     alt="single-product">
-                            </a>
-                        </div>
-                        <!-- Product Image End -->
-                        <!-- Product Content Start -->
-                        <div class="pro-content">
-                            <h4><a href="product-page.html">congue sitamet</a></h4>
-                            <p class="price"><span>$2000.00</span></p>
-                        </div>
-                        <!-- Product Content End -->
-                    </div>
-                    <!-- Single Product End -->
-                    <!-- Single Product Start -->
-                    <div class="single-product mb-25">
-                        <!-- Product Image Start -->
-                        <div class="pro-img">
-                            <a href="product-page.html">
-                                <img class="primary-img" src="<?= Url::base(); ?>/img/new-products/3_1.jpg"
-                                     alt="single-product">
-                                <img class="secondary-img" src="<?= Url::base(); ?>/img/new-products/3_2.jpg"
-                                     alt="single-product">
-                            </a>
-                        </div>
-                        <!-- Product Image End -->
-                        <!-- Product Content Start -->
-                        <div class="pro-content">
-                            <h4><a href="product-page.html">dictum idrisus</a></h4>
-                            <p class="price"><span>$602.00</span></p>
-                        </div>
-                        <!-- Product Content End -->
-                    </div>
+                    <?php endforeach; ?>
                     <!-- Single Product End -->
                 </div>
                 <!-- Triple Product End -->
                 <!-- Triple Product Start -->
                 <div class="triple-product">
                     <!-- Single Product Start -->
-                    <div class="single-product mb-25">
-                        <!-- Product Image Start -->
-                        <div class="pro-img">
-                            <a href="product-page.html">
-                                <img class="primary-img" src="<?= Url::base(); ?>/img/new-products/2_1.jpg"
-                                     alt="single-product">
-                                <img class="secondary-img" src="<?= Url::base(); ?>/img/new-products/2_2.jpg"
-                                     alt="single-product">
-                            </a>
+                    <?php foreach ($mostViewed as $value): ?>
+                        <div class="single-product mb-25">
+                            <!-- Product Image Start -->
+                            <div class="pro-img">
+                                <a href="<?=Url::to(['category/product-detail', 'id' => $value->id]);?>">
+                                    <?php foreach ($value->twoimage() as $key => $item): ?>
+                                        <img class="<?=$key== 0 ? 'primary-img' : 'secondary-img';?>" src="<?=$item;?>"
+                                             alt="single-product">
+                                    <?php endforeach; ?>
+                                </a>
+                            </div>
+                            <!-- Product Image End -->
+                            <!-- Product Content Start -->
+                            <div class="pro-content">
+                                <h4><a href="<?=Url::to(['category/product-detail', 'id' => $value->id]);?>">Carte Postal Clock</a></h4>
+                                <p class="price"><span>$122.00</span></p>
+                            </div>
+                            <!-- Product Content End -->
                         </div>
-                        <!-- Product Image End -->
-                        <!-- Product Content Start -->
-                        <div class="pro-content">
-                            <h4><a href="product-page.html">Carte Postal Clock</a></h4>
-                            <p class="price"><span>$122.00</span></p>
-                        </div>
-                        <!-- Product Content End -->
-                    </div>
-                    <!-- Single Product End -->
-                    <!-- Single Product Start -->
-                    <div class="single-product mb-25">
-                        <!-- Product Image Start -->
-                        <div class="pro-img">
-                            <a href="product-page.html">
-                                <img class="primary-img" src="<?= Url::base(); ?>/img/new-products/3_1.jpg"
-                                     alt="single-product">
-                                <img class="secondary-img" src="<?= Url::base(); ?>/img/new-products/3_2.jpg"
-                                     alt="single-product">
-                            </a>
-                        </div>
-                        <!-- Product Image End -->
-                        <!-- Product Content Start -->
-                        <div class="pro-content">
-                            <h4><a href="product-page.html">congue sitamet</a></h4>
-                            <p class="price"><span>$2000.00</span></p>
-                        </div>
-                        <!-- Product Content End -->
-                    </div>
-                    <!-- Single Product End -->
-                    <!-- Single Product Start -->
-                    <div class="single-product mb-25">
-                        <!-- Product Image Start -->
-                        <div class="pro-img">
-                            <a href="product-page.html">
-                                <img class="primary-img" src="<?= Url::base(); ?>/img/new-products/4_1.jpg"
-                                     alt="single-product">
-                                <img class="secondary-img" src="<?= Url::base(); ?>/img/new-products/2_2.jpg"
-                                     alt="single-product">
-                            </a>
-                        </div>
-                        <!-- Product Image End -->
-                        <!-- Product Content Start -->
-                        <div class="pro-content">
-                            <h4><a href="#">dictum idrisus</a></h4>
-                            <p class="price"><span>$602.00</span></p>
-                        </div>
-                        <!-- Product Content End -->
-                    </div>
+                    <?php endforeach; ?>
                     <!-- Single Product End -->
                 </div>
                 <!-- Triple Product End -->

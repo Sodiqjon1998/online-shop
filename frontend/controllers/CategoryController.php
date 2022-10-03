@@ -15,18 +15,144 @@ class CategoryController extends Controller
     public function actionIndex()
     {
 
+        $data = \Yii::$app->request->get('qiy');
         $query = Product::find()->where(['status' => Product::STATUS_ACTIVE]);
+
+        if (\Yii::$app->request->isAjax) {
+            $layout = false;
+            if ($data == 'title_asc') {
+                $dataProvider = new ActiveDataProvider([
+                    'query' => $query,
+                    'pagination' => [
+                        'pageSize' => 9,
+                    ],
+                    'sort' => ['defaultOrder' => ['title' => SORT_ASC]]
+                ]);
+                $models = [];
+                $models ['content'] = $dataProvider->models;
+                $datas = [];
+                $dataNew = [];
+
+                foreach ($models['content'] as $model) {
+                    $datas ['id'] = $model['id'];
+                    $datas ['title'] = $model['title'];
+                    $datas ['price'] = $model['price'];
+                    $datas ['content'] = $model['content'];
+                    $datas ['img'] = $model->image();
+
+                    array_push($dataNew, $datas);
+                }
+                $models ['data'] = $dataNew;
+                return $this->asJson($models);
+            } elseif ($data == 'title_desc') {
+                $dataProvider = new ActiveDataProvider([
+                    'query' => $query,
+                    'pagination' => [
+                        'pageSize' => 9,
+                    ],
+                    'sort' => ['defaultOrder' => ['title' => SORT_DESC]]
+                ]);
+                $models = [];
+                $models ['content'] = $dataProvider->models;
+                $datas = [];
+                $dataNew = [];
+
+                foreach ($models['content'] as $model) {
+                    $datas ['id'] = $model['id'];
+                    $datas ['title'] = $model['title'];
+                    $datas ['price'] = $model['price'];
+                    $datas ['content'] = $model['content'];
+                    $datas ['img'] = $model->image();
+
+                    array_push($dataNew, $datas);
+                }
+                $models ['data'] = $dataNew;
+                return $this->asJson($models);
+            } elseif ($data == 'price-asc') {
+                $dataProvider = new ActiveDataProvider([
+                    'query' => $query,
+                    'pagination' => [
+                        'pageSize' => 9,
+                    ],
+                    'sort' => ['defaultOrder' => ['price' => SORT_ASC]]
+                ]);
+                $models = [];
+                $models ['content'] = $dataProvider->models;
+                $datas = [];
+                $dataNew = [];
+
+                foreach ($models['content'] as $model) {
+                    $datas ['id'] = $model['id'];
+                    $datas ['title'] = $model['title'];
+                    $datas ['content'] = $model['content'];
+                    $datas ['price'] = $model['price'];
+                    $datas ['img'] = $model->image();
+
+                    array_push($dataNew, $datas);
+                }
+                $models ['data'] = $dataNew;
+                return $this->asJson($models);
+            } elseif ($data == 'price_desc') {
+                $dataProvider = new ActiveDataProvider([
+                    'query' => $query,
+                    'pagination' => [
+                        'pageSize' => 9,
+                    ],
+                    'sort' => ['defaultOrder' => ['price' => SORT_DESC]]
+                ]);
+                $models = [];
+                $models ['content'] = $dataProvider->models;
+                $datas = [];
+                $dataNew = [];
+
+                foreach ($models['content'] as $model) {
+                    $datas ['id'] = $model['id'];
+                    $datas ['title'] = $model['title'];
+                    $datas ['content'] = $model['content'];
+                    $datas ['price'] = $model['price'];
+                    $datas ['img'] = $model->image();
+
+                    array_push($dataNew, $datas);
+                }
+                $models ['data'] = $dataNew;
+                return $this->asJson($models);
+            } else {
+                $dataProvider = new ActiveDataProvider([
+                    'query' => $query,
+                    'pagination' => [
+                        'pageSize' => 9,
+                    ],
+                ]);
+                $models = [];
+                $models ['content'] = $dataProvider->models;
+                $datas = [];
+                $dataNew = [];
+
+                foreach ($models['content'] as $model) {
+                    $datas ['id'] = $model['id'];
+                    $datas ['title'] = $model['title'];
+                    $datas ['content'] = $model['content'];
+                    $datas ['price'] = $model['price'];
+                    $datas ['img'] = $model->image();
+
+                    array_push($dataNew, $datas);
+                }
+                $models ['data'] = $dataNew;
+                return $this->asJson($models);
+            }
+
+        }
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
             'pagination' => [
                 'pageSize' => 9,
-            ]
+            ],
         ]);
 
         $products = $dataProvider->models;
 
-        if($products){
+        if ($products) {
             return $this->render('index', [
                 'products' => $products,
                 'dataProvider' => $dataProvider,
@@ -36,6 +162,157 @@ class CategoryController extends Controller
         return $this->render('@frontend/views/site/404');
     }
 
+
+    public function actionLimit()
+    {
+
+        $query = Product::find()->where(['status' => Product::STATUS_ACTIVE]);
+        $data = \Yii::$app->request->get('qiy');
+
+        if (\Yii::$app->request->isAjax) {
+            $layout = false;
+            if ($data == '9') {
+                $datan = $data * 1;
+                $query = Product::find()->where(['status' => Product::STATUS_ACTIVE])->limit($datan)->all();
+                $models = [];
+                $datas = [];
+                $dataNew = [];
+                $models ['content'] = $query;
+
+                foreach ($models['content'] as $model) {
+                    $datas ['id'] = $model['id'];
+                    $datas ['title'] = $model['title'];
+                    $datas ['content'] = $model['content'];
+                    $datas ['price'] = $model['price'];
+                    $datas ['img'] = $model->image();
+
+                    array_push($dataNew, $datas);
+                }
+                $models ['data'] = $dataNew;
+                return $this->asJson($models);
+            }
+            elseif ($data == '2') {
+                $datan = $data * 1;
+                $query = Product::find()->where(['status' => Product::STATUS_ACTIVE])->limit($datan)->all();
+                $models = [];
+                $datas = [];
+                $dataNew = [];
+                $models ['content'] = $query;
+
+                foreach ($models['content'] as $model) {
+                    $datas ['id'] = $model['id'];
+                    $datas ['title'] = $model['title'];
+                    $datas ['content'] = $model['content'];
+                    $datas ['price'] = $model['price'];
+                    $datas ['img'] = $model->image();
+
+                    array_push($dataNew, $datas);
+                }
+                $models ['data'] = $dataNew;
+                return $this->asJson($models);
+            }
+            elseif ($data == '50') {
+                $datan = $data * 1;
+                $query = Product::find()->where(['status' => Product::STATUS_ACTIVE])->limit($datan)->all();
+                $models = [];
+                $datas = [];
+                $dataNew = [];
+                $models ['content'] = $query;
+
+                foreach ($models['content'] as $model) {
+                    $datas ['id'] = $model['id'];
+                    $datas ['title'] = $model['title'];
+                    $datas ['content'] = $model['content'];
+                    $datas ['price'] = $model['price'];
+                    $datas ['img'] = $model->image();
+
+                    array_push($dataNew, $datas);
+                }
+                $models ['data'] = $dataNew;
+                return $this->asJson($models);
+            }
+            elseif ($data == '75') {
+                $datan = $data * 1;
+                $query = Product::find()->where(['status' => Product::STATUS_ACTIVE])->limit($datan)->all();
+                $models = [];
+                $datas = [];
+                $dataNew = [];
+                $models ['content'] = $query;
+
+                foreach ($models['content'] as $model) {
+                    $datas ['id'] = $model['id'];
+                    $datas ['title'] = $model['title'];
+                    $datas ['content'] = $model['content'];
+                    $datas ['price'] = $model['price'];
+                    $datas ['img'] = $model->image();
+
+                    array_push($dataNew, $datas);
+                }
+                $models ['data'] = $dataNew;
+                return $this->asJson($models);
+            }
+            elseif ($data == '100') {
+                $datan = $data * 1;
+                $query = Product::find()->where(['status' => Product::STATUS_ACTIVE])->limit($datan)->all();
+                $models = [];
+                $datas = [];
+                $dataNew = [];
+                $models ['content'] = $query;
+
+                foreach ($models['content'] as $model) {
+                    $datas ['id'] = $model['id'];
+                    $datas ['title'] = $model['title'];
+                    $datas ['content'] = $model['content'];
+                    $datas ['price'] = $model['price'];
+                    $datas ['img'] = $model->image();
+
+                    array_push($dataNew, $datas);
+                }
+                $models ['data'] = $dataNew;
+                return $this->asJson($models);
+            }
+
+            else {
+                $dataProvider = new ActiveDataProvider([
+                    'query' => $query,
+                    'pagination' => [
+                        'pageSize' => 9,
+                    ],
+                ]);
+                $models = [];
+                $models ['content'] = $dataProvider->models;
+                $datas = [];
+                $dataNew = [];
+
+                foreach ($models['content'] as $model) {
+                    $datas ['id'] = $model['id'];
+                    $datas ['title'] = $model['title'];
+                    $datas ['content'] = $model['content'];
+                    $datas ['price'] = $model['price'];
+                    $datas ['img'] = $model->image();
+
+                    array_push($dataNew, $datas);
+                }
+                $models ['data'] = $dataNew;
+                return $this->asJson($models);
+            }
+
+        }
+
+        $dataProvider = new ActiveDataProvider([
+            'query' => $query,
+        ]);
+        $products = $dataProvider->models;
+
+        if ($products) {
+            return $this->render('index', [
+                'products' => $products,
+                'dataProvider' => $dataProvider,
+            ]);
+        }
+
+        return $this->render('@frontend/views/site/404');
+    }
 
 
     public function actionCategories($id)
@@ -51,7 +328,7 @@ class CategoryController extends Controller
 
         $products = $dataProvider->models;
 
-        if($products){
+        if ($products) {
             return $this->render('index', [
                 'products' => $products,
                 'dataProvider' => $dataProvider,
@@ -62,18 +339,21 @@ class CategoryController extends Controller
     }
 
 
-    public function actionProductDetail($id){
+    public function actionProductDetail($id)
+    {
 
-        if(Product::findOne($id)){
+        if (Product::findOne($id)) {
 
             $productOne = Product::findOne(['id' => $id, 'status' => Product::STATUS_ACTIVE]);
-
+            $productOne->updateCounters(['view_count' => 1]);
             $model = new ProductCommit();
 
-            if($model->load(\Yii::$app->request->post()) && $model->validate()){
+            if ($model->load(\Yii::$app->request->post()) && $model->validate()) {
+                $productOne->updateCounters(['review_count' => 1]);
+
                 $model->status = 0;
 
-                if($model->save()){
+                if ($model->save()) {
                     return $this->redirect(\Yii::$app->request->referrer);
                 }
             }

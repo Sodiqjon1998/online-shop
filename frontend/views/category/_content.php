@@ -31,25 +31,21 @@ use yii\helpers\Url;
                 </div>
             </div>
             <div class="col-md-4 col-sm-5 pull-right">
-                <select name="shorer" id="shorter" class="form-control select-varient">
-                    <option value="#">Sort By:Default</option>
-                    <option value="#">Sort By:Name (A - Z)</option>
-                    <option value="#">Sort By:Name (Z - A)</option>
-                    <option value="#">Sort By:Price (Low > High)</option>
-                    <option value="#">Sort By:Price (High > Low)</option>
-                    <option value="#">Sort By:Rating (Highest)</option>
-                    <option value="#">Sort By:Rating (Lowest)</option>
-                    <option value="#">Sort By:Model (A - Z)</option>
-                    <option value="#">Sort By:Model (Z - A)</option>
+                <select name="shorer" id="shorter" class="form-control select-varient shorter">
+                    <option class="select-search" value="title">Sort By:Default</option>
+                    <option class="select-search" value="title_asc">Sort By:Name (A - Z)</option>
+                    <option class="select-search" value="title_desc">Sort By:Name (Z - A)</option>
+                    <option class="select-search" value="price_asc">Sort By:Price (Low > High)</option>
+                    <option class="select-search" value="price_desc">Sort By:Price (High > Low)</option>
                 </select>
             </div>
             <div class="col-md-3 col-sm-3 pull-right">
-                <select name="shorter" id="#" class="form-control select-varient">
-                    <option value="#">Show: 9</option>
-                    <option value="#">Show: 25</option>
-                    <option value="#">Show: 50</option>
-                    <option value="#">Show: 75</option>
-                    <option value="#">Show: 100</option>
+                <select name="shorter" id="limit" class="form-control select-varient">
+                    <option value="9">Show: 9</option>
+                    <option value="2">Show: 25</option>
+                    <option value="50">Show: 50</option>
+                    <option value="75">Show: 75</option>
+                    <option value="100">Show: 100</option>
                 </select>
             </div>
         </div>
@@ -57,9 +53,9 @@ use yii\helpers\Url;
             <div class="col-sm-12">
                 <div class="tab-content categorie-list ">
                     <div id="list-view" class="tab-pane fade">
-                        <div class="row">
+                        <div class="row itemRes2">
                             <!-- Main Single Product Start -->
-                            <?php foreach ($products as $product): ?>
+                            <?php foreach ($products as $key => $product): ?>
                                 <div class="main-single-product fix">
                                     <div class="col-sm-4">
                                         <!-- Single Product Start -->
@@ -71,8 +67,7 @@ use yii\helpers\Url;
                                                          alt="single-product">
                                                 </a>
                                                 <div class="quick-view">
-                                                    <a href="#" data-toggle="modal" data-target="#myModal"><i
-                                                                class="pe-7s-look"></i>quick view</a>
+                                                    <a href="#" data-toggle="modal" data-target="#myModal"><i class="pe-7s-look"></i>quick view</a>
                                                 </div>
                                                 <span class="sticker-new">new</span>
                                             </div>
@@ -91,7 +86,7 @@ use yii\helpers\Url;
                                                 <ul class="pro-price-list">
                                                     <li class="price">$<?= $product->price; ?></li>
                                                     <li class="mtb-50">
-                                                        <p><?= $product->content; ?></p>
+                                                        <p><?= $product->title; ?></p>
                                                     </li>
                                                 </ul>
                                             </div>
@@ -103,8 +98,7 @@ use yii\helpers\Url;
                                                 </button>
                                                 <a href="wish-list.html" data-toggle="tooltip" title="Add to Wishlist"
                                                    class="same-btn mr-15"><i class="pe-7s-like"></i></a>
-                                                <button data-toggle="tooltip" title="Compare this Product"
-                                                        class="same-btn"><i class="pe-7s-repeat"></i></button>
+                                                <button data-toggle="tooltip" title="Compare this Product" class="same-btn"><i class="pe-7s-repeat"></i></button>
                                             </div>
                                             <!-- Product Button Actions End -->
                                         </div>
@@ -138,8 +132,8 @@ use yii\helpers\Url;
                     </div>
                     <!-- #list-view End -->
                     <div id="grid-view" class="tab-pane fade in active mt-40">
-                        <div class="row">
-                            <?php foreach ($products as $product): ?>
+                        <div class="row itemRes">
+                            <?php foreach ($products as $k => $product): ?>
                                 <div class="col-md-4 col-sm-6">
                                     <!-- Single Product Start -->
                                     <div class="single-product">
@@ -153,8 +147,7 @@ use yii\helpers\Url;
                                                 <?php endforeach; ?>
                                             </a>
                                             <div class="quick-view">
-                                                <a href="#" data-toggle="modal" data-target="#myModal"><i
-                                                            class="pe-7s-look"></i>quick view</a>
+                                                <a href="#" data-toggle="modal" data-target="#myModal"><i class="pe-7s-look"></i>quick view</a>
                                             </div>
                                             <span class="sticker-new">new</span>
                                         </div>

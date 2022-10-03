@@ -18,7 +18,7 @@ use yii\web\JsExpression;
             <div class="col-sm-12">
                 <ul class="main-thumb-desc text-center list-inline">
                     <li class="active"><a data-toggle="tab" href="#detail">Details</a></li>
-                    <li><a data-toggle="tab" href="#review">Reviews (0)</a></li>
+                    <li><a data-toggle="tab" href="#review">Reviews (<?=$productOne->review_count;?>)</a></li>
                 </ul>
                 <!-- Product Thumbnail Tab Content Start -->
                 <div class="tab-content thumb-content">
