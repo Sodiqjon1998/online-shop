@@ -3,9 +3,8 @@
 
 /* @var $model \common\models\ProductCommit */
 
-use kartik\rating\StarRating;
 use yii\bootstrap4\ActiveForm;
-use yii\web\JsExpression;
+use yii2mod\rating\StarRating;
 
 
 ?>
@@ -18,7 +17,7 @@ use yii\web\JsExpression;
             <div class="col-sm-12">
                 <ul class="main-thumb-desc text-center list-inline">
                     <li class="active"><a data-toggle="tab" href="#detail">Details</a></li>
-                    <li><a data-toggle="tab" href="#review">Reviews (<?=$productOne->review_count;?>)</a></li>
+                    <li><a data-toggle="tab" href="#review">Reviews (<?= $productOne->review_count; ?>)</a></li>
                 </ul>
                 <!-- Product Thumbnail Tab Content Start -->
                 <div class="tab-content thumb-content">
@@ -50,18 +49,16 @@ use yii\web\JsExpression;
                                 <div class="row">
                                     <div class="col-sm-12">
                                         <label class="control-label req">Rating</label> &nbsp;&nbsp;&nbsp; Bad&nbsp;
+                                        <br>
                                         <?= $form->field($model, 'rating')->widget(StarRating::class, [
-                                            'pluginOptions' => [
-                                                'stars' => 6,
-                                                'min' => 0,
-                                                'max' => 6,
-                                                'step' => 0.1,
-                                                'filledStar' => '<i class="fas fa-heart"></i>',
-                                                'emptyStar' => '<i class="fas fa-heart-empty"></i>',
-                                                'defaultCaption' => '{rating} hearts',
-                                                'starCaptions' => new JsExpression("function(val){return val == 1 ? 'One heart' : val + ' hearts';}")
-                                            ]
-                                        ])->label(''); ?> &nbsp;Good
+                                            'options' => [
+                                                // Your additional tag options
+                                            ],
+                                            'clientOptions' => [
+                                                // Your client options
+                                            ],
+                                        ]); ?>
+                                        &nbsp;Good
                                     </div>
                                 </div>
                             </div>

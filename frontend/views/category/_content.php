@@ -42,7 +42,7 @@ use yii\helpers\Url;
             <div class="col-md-3 col-sm-3 pull-right">
                 <select name="shorter" id="limit" class="form-control select-varient">
                     <option value="9">Show: 9</option>
-                    <option value="2">Show: 25</option>
+                    <option value="25">Show: 25</option>
                     <option value="50">Show: 50</option>
                     <option value="75">Show: 75</option>
                     <option value="100">Show: 100</option>

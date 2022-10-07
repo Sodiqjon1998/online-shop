@@ -27,7 +27,7 @@
         "yiisoft/yii2-imagine": "^2.3",
         "zxbodya/yii2-gallery-manager": "*@dev",
         "kartik-v/yii2-widget-select2": "dev-master",
-        "kartik-v/yii2-widget-rating": "dev-master",
+        "yii2mod/yii2-star-rating": "*",
         "yiisoft/yii2-bootstrap": "2.0.x-dev"
     },
     "require-dev": {

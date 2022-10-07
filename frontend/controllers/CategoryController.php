@@ -191,7 +191,7 @@ class CategoryController extends Controller
                 $models ['data'] = $dataNew;
                 return $this->asJson($models);
             }
-            elseif ($data == '2') {
+            elseif ($data == '25') {
                 $datan = $data * 1;
                 $query = Product::find()->where(['status' => Product::STATUS_ACTIVE])->limit($datan)->all();
                 $models = [];

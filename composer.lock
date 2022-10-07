@@ -4,14 +4,14 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "42ed3fa6d2afa06a78d8f09993a7cca2",
+    "content-hash": "1dc50164aa0db12530c40a916fcfb1d4",
     "packages": [
         {
             "name": "bower-asset/bootstrap",
             "version": "v3.4.1",
             "source": {
                 "type": "git",
-                "url": "https://github.com/twbs/bootstrap.git",
+                "url": "git@github.com:twbs/bootstrap.git",
                 "reference": "68b0d231a13201eb14acd3dc84e51543d16e5f7e"
             },
             "dist": {
@@ -101,6 +101,27 @@
                 "reference": "38c8d3131a82567bfef18da09f7f4db68c84f8a3"
             },
             "type": "bower-asset"
+        },
+        {
+            "name": "bower-asset/raty",
+            "version": "v3.1.1",
+            "source": {
+                "type": "git",
+                "url": "git@github.com:wbotelhos/raty.git",
+                "reference": "fd66c886e99f6cc2cbe13a483d3c545bf1db967a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/wbotelhos/raty/zipball/fd66c886e99f6cc2cbe13a483d3c545bf1db967a",
+                "reference": "fd66c886e99f6cc2cbe13a483d3c545bf1db967a"
+            },
+            "require": {
+                "bower-asset/jquery": ">=3.5.1,<4.0.0"
+            },
+            "type": "bower-asset",
+            "license": [
+                "MIT"
+            ]
         },
         {
             "name": "bower-asset/yii2-pjax",
@@ -571,61 +592,6 @@
             "time": "2022-08-17T07:53:35+00:00"
         },
         {
-            "name": "kartik-v/bootstrap-star-rating",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/kartik-v/bootstrap-star-rating.git",
-                "reference": "46c21f551d6c608499244eb45a841dba334d1d2a"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/kartik-v/bootstrap-star-rating/zipball/46c21f551d6c608499244eb45a841dba334d1d2a",
-                "reference": "46c21f551d6c608499244eb45a841dba334d1d2a",
-                "shasum": ""
-            },
-            "default-branch": true,
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "4.1.x-dev"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "BSD-3-Clause"
-            ],
-            "authors": [
-                {
-                    "name": "Kartik Visweswaran",
-                    "email": "kartikv2@gmail.com",
-                    "homepage": "http://www.krajee.com/"
-                }
-            ],
-            "description": "A simple yet powerful JQuery star rating plugin for Bootstrap.",
-            "homepage": "https://github.com/kartik-v/bootstrap-star-rating",
-            "keywords": [
-                "Rating",
-                "awesome",
-                "bootstrap",
-                "font",
-                "glyphicon",
-                "star",
-                "svg"
-            ],
-            "support": {
-                "issues": "https://github.com/kartik-v/bootstrap-star-rating/issues",
-                "source": "https://github.com/kartik-v/bootstrap-star-rating/tree/master"
-            },
-            "funding": [
-                {
-                    "url": "https://opencollective.com/bootstrap-star-rating",
-                    "type": "open_collective"
-                }
-            ],
-            "time": "2022-04-03T17:42:59+00:00"
-        },
-        {
             "name": "kartik-v/yii2-dialog",
             "version": "dev-master",
             "source": {
@@ -930,67 +896,6 @@
                 }
             ],
             "time": "2022-06-28T04:31:04+00:00"
-        },
-        {
-            "name": "kartik-v/yii2-widget-rating",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/kartik-v/yii2-widget-rating.git",
-                "reference": "d3d7249490044f80e65f8f3938191f39a76586b2"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/kartik-v/yii2-widget-rating/zipball/d3d7249490044f80e65f8f3938191f39a76586b2",
-                "reference": "d3d7249490044f80e65f8f3938191f39a76586b2",
-                "shasum": ""
-            },
-            "require": {
-                "kartik-v/bootstrap-star-rating": "~4.0",
-                "kartik-v/yii2-krajee-base": ">=1.9"
-            },
-            "default-branch": true,
-            "type": "yii2-extension",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.0.x-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "kartik\\rating\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "BSD-3-Clause"
-            ],
-            "authors": [
-                {
-                    "name": "Kartik Visweswaran",
-                    "email": "kartikv2@gmail.com",
-                    "homepage": "http://www.krajee.com/"
-                }
-            ],
-            "description": "A Yii2 widget for the simple yet powerful bootstrap-star-rating plugin with fractional rating support (sub repo split from yii2-widgets)",
-            "homepage": "https://github.com/kartik-v/yii2-widget-rating",
-            "keywords": [
-                "Rating",
-                "bootstrap",
-                "extension",
-                "form",
-                "input",
-                "jquery",
-                "plugin",
-                "star",
-                "widget",
-                "yii2"
-            ],
-            "support": {
-                "issues": "https://github.com/kartik-v/yii2-widget-rating/issues",
-                "source": "https://github.com/kartik-v/yii2-widget-rating/tree/v1.0.5"
-            },
-            "time": "2021-11-20T05:26:05+00:00"
         },
         {
             "name": "kartik-v/yii2-widget-select2",
@@ -2012,12 +1917,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/mime.git",
-                "reference": "bb2ccf759e2b967dcd11bdee5bdf30dddd2290bd"
+                "reference": "645c697ba547eb852ae64e6d6185c297f90f6fe6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/mime/zipball/bb2ccf759e2b967dcd11bdee5bdf30dddd2290bd",
-                "reference": "bb2ccf759e2b967dcd11bdee5bdf30dddd2290bd",
+                "url": "https://api.github.com/repos/symfony/mime/zipball/645c697ba547eb852ae64e6d6185c297f90f6fe6",
+                "reference": "645c697ba547eb852ae64e6d6185c297f90f6fe6",
                 "shasum": ""
             },
             "require": {
@@ -2031,7 +1936,8 @@
                 "egulias/email-validator": "~3.0.0",
                 "phpdocumentor/reflection-docblock": "<3.2.2",
                 "phpdocumentor/type-resolver": "<1.4.0",
-                "symfony/mailer": "<4.4"
+                "symfony/mailer": "<4.4",
+                "symfony/serializer": "<5.4.14|>=6.0,<6.0.14|>=6.1,<6.1.6"
             },
             "require-dev": {
                 "egulias/email-validator": "^2.1.10|^3.1",
@@ -2039,7 +1945,7 @@
                 "symfony/dependency-injection": "^4.4|^5.0|^6.0",
                 "symfony/property-access": "^4.4|^5.1|^6.0",
                 "symfony/property-info": "^4.4|^5.1|^6.0",
-                "symfony/serializer": "^5.2|^6.0"
+                "symfony/serializer": "^5.4.14|~6.0.14|^6.1.6"
             },
             "type": "library",
             "autoload": {
@@ -2087,7 +1993,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2022-09-01T18:18:29+00:00"
+            "time": "2022-10-01T22:01:45+00:00"
         },
         {
             "name": "symfony/polyfill-ctype",
@@ -2726,6 +2632,52 @@
                 "wiki": "https://github.com/wbraganca/yii2-dynamicform/wiki/"
             },
             "time": "2020-05-18T18:07:00+00:00"
+        },
+        {
+            "name": "yii2mod/yii2-star-rating",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/yii2mod/yii2-star-rating.git",
+                "reference": "a4405c4cc158667816ce6bd63e87507ddf3ac506"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/yii2mod/yii2-star-rating/zipball/a4405c4cc158667816ce6bd63e87507ddf3ac506",
+                "reference": "a4405c4cc158667816ce6bd63e87507ddf3ac506",
+                "shasum": ""
+            },
+            "require": {
+                "bower-asset/raty": "*",
+                "yiisoft/yii2": "*"
+            },
+            "default-branch": true,
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "yii2mod\\rating\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Igor Chepurnoy",
+                    "email": "igorzfort@gmail.com"
+                }
+            ],
+            "description": "Star rating widget based on jQuery Raty https://github.com/wbotelhos/raty",
+            "keywords": [
+                "module",
+                "yii2"
+            ],
+            "support": {
+                "issues": "https://github.com/yii2mod/yii2-star-rating/issues",
+                "source": "https://github.com/yii2mod/yii2-star-rating/tree/master"
+            },
+            "time": "2019-11-02T17:42:09+00:00"
         },
         {
             "name": "yiisoft/yii2",
@@ -4865,12 +4817,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "c9da1dcac1a38653b0fd7a186e7a1abdc713eb3d"
+                "reference": "0121b1461752aaef5fb6794a66b6ff498b661f26"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/c9da1dcac1a38653b0fd7a186e7a1abdc713eb3d",
-                "reference": "c9da1dcac1a38653b0fd7a186e7a1abdc713eb3d",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/0121b1461752aaef5fb6794a66b6ff498b661f26",
+                "reference": "0121b1461752aaef5fb6794a66b6ff498b661f26",
                 "shasum": ""
             },
             "require": {
@@ -4959,7 +4911,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2022-09-25T14:24:38+00:00"
+            "time": "2022-09-27T12:47:19+00:00"
         },
         {
             "name": "psr/http-factory",
@@ -5976,12 +5928,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/type.git",
-                "reference": "33589696a54e5ae179413ec009d79e44ebe577cd"
+                "reference": "4d34b23933f255b0822758a44272222cac593eb4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/type/zipball/33589696a54e5ae179413ec009d79e44ebe577cd",
-                "reference": "33589696a54e5ae179413ec009d79e44ebe577cd",
+                "url": "https://api.github.com/repos/sebastianbergmann/type/zipball/4d34b23933f255b0822758a44272222cac593eb4",
+                "reference": "4d34b23933f255b0822758a44272222cac593eb4",
                 "shasum": ""
             },
             "require": {
@@ -6024,7 +5976,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2022-09-19T05:28:34+00:00"
+            "time": "2022-10-01T05:56:17+00:00"
         },
         {
             "name": "sebastian/version",
@@ -6939,7 +6891,6 @@
         "kartik-v/yii2-widget-fileinput": 20,
         "zxbodya/yii2-gallery-manager": 20,
         "kartik-v/yii2-widget-select2": 20,
-        "kartik-v/yii2-widget-rating": 20,
         "yiisoft/yii2-bootstrap": 20
     },
     "prefer-stable": false,

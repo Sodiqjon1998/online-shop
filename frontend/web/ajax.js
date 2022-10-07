@@ -17,7 +17,7 @@ $(document).ready(function (){
                     div = div + "<div class='col-md-4 col-sm-6'>" +
                         "<div class='single-product'>" +
                             "<div class='pro-img'>" +
-                                "<a href='product-page.html'>" +
+                                "<a href='/category/product-detail?id="+item.id+"'>" +
                                     "<img class='primary-img' src='"+item.img+"' alt='single-product'>"+
                                 "</a>" +
                                 "<div class='quick-view'>" +
@@ -25,13 +25,13 @@ $(document).ready(function (){
                                     "<i class='pe-7s-look'>" + "</i>" +
                                     "quick view" + "</a>" +
                                 "</div>" +
-                                "<span class='sticker-new'>" +" new "+ "</span>"+
+                                "<span class='sticker-new'>" +"new"+ "</span>"+
                             "</div>" +
                             <!-- Product Image End -->
                             <!-- Product Content Start -->
                             "<div class='pro-content text-center'>"+
                                 "<h4>" +
-                                    "<a href='product-page.html'>"+item.title+ "</a>" +
+                                    "<a href='/category/product-detail?id="+item.id+"'>"+item.title+ "</a>" +
                                 "</h4>"+
                                 "<p class='price'>" + "<span>$" +item.price + "</span>" + "</p>"+
                                 "<div class='action-links2'>" +
@@ -51,7 +51,7 @@ $(document).ready(function (){
                            "<div class='single-product'>" +
                                <!-- Product Image Start -->
                                "<div class='pro-img'>" +
-                                   "<a href='product-page.html'>" +
+                                   "<a href='/category/product-detail?id="+item.id+"'>" +
                                        "<img class='primary-img' src='"+item.img+"' alt='single-product'>"+
                                    "</a>" +
                                    "<div class='quick-view'>" +
@@ -66,7 +66,7 @@ $(document).ready(function (){
                        "<div class='col-sm-8'>"+
                            "<div class='thubnail-desc fix'>"+
                                "<h4 class='product-header'>" +
-                                   "<a href='product-page.html'>"+item.title+"</a>" +
+                                   "<a href='/category/product-detail?id="+item.id+"'>"+item.title+"</a>" +
                                 "</h4>"+
                                "<div class='pro-price mb-15'>"+
                                    "<ul class='pro-price-list'>" +
@@ -123,7 +123,7 @@ $(document).ready(function (){
                     div = div + "<div class='col-md-4 col-sm-6'>" +
                         "<div class='single-product'>" +
                         "<div class='pro-img'>" +
-                        "<a href='product-page.html'>" +
+                        "<a href='/category/product-detail?id="+item.id+"'>" +
                         "<img class='primary-img' src='"+item.img+"' alt='single-product'>"+
                         "</a>" +
                         "<div class='quick-view'>" +
@@ -137,7 +137,7 @@ $(document).ready(function (){
                         <!-- Product Content Start -->
                         "<div class='pro-content text-center'>"+
                         "<h4>" +
-                        "<a href='product-page.html'>"+item.title+ "</a>" +
+                        "<a href='/category/product-detail?id="+item.id+"'>"+item.title+ "</a>" +
                         "</h4>"+
                         "<p class='price'>" + "<span>$" +item.price + "</span>" + "</p>"+
                         "<div class='action-links2'>" +
@@ -159,7 +159,7 @@ $(document).ready(function (){
                         "<div class='single-product'>" +
                         <!-- Product Image Start -->
                         "<div class='pro-img'>" +
-                        "<a href='product-page.html'>" +
+                        "<a href='/category/product-detail?id="+item.id+"'>" +
                         "<img class='primary-img' src='"+item.img+"' alt='single-product'>"+
                         "</a>" +
                         "<div class='quick-view'>" +
@@ -174,7 +174,7 @@ $(document).ready(function (){
                         "<div class='col-sm-8'>"+
                         "<div class='thubnail-desc fix'>"+
                         "<h4 class='product-header'>" +
-                        "<a href='product-page.html'>"+item.title+"</a>" +
+                        "<a href='/category/product-detail?id="+item.id+"'>"+item.title+"</a>" +
                         "</h4>"+
                         "<div class='pro-price mb-15'>"+
                         "<ul class='pro-price-list'>" +
